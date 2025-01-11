@@ -6,13 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css.map';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import About from './components/About';
-import Events from './components/Events';
-import Schedule from './components/Schedule';
-import SparkleCursor from './components/SparkleCursor';
+import About from './pages/About';
+import Events from './pages/Events';
+import Schedule from './pages/Schedule';
+import SparkleCursor from './SparkleCursor';
 import { DndContext, useDroppable } from "@dnd-kit/core";
-import FeedbackForm from "./components/FeedbackForm";
-import Login from "./components/loginPages/Login";
+import FeedbackForm from "./pages/FeedbackForm";
+import Login from "./pages/loginPages/Login";
 
 function App() {
     const { setNodeRef } = useDroppable({

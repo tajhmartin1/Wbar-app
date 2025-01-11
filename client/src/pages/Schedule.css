@@ -1,17 +1,15 @@
 .outer-container {
-  background-image: url('./background_tester.JPG'); /* Background image */
+  background-image: url('../../public/background_tester.JPG'); /* Background image */
+  margin-top: -20em;
   background-size: cover;
-  background-repeat: no-repeat;
   background-attachment: fixed;
-  padding: 0; /* Removed padding from outer container */
-  min-height: 100vh; /* Ensure full height of the viewport */
+  min-height: 130vh; /* Ensure full height of the viewport */
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Align items to the start to move the container higher */
-  overflow-x: hidden !important;/* Prevent scrolling on the outer container*/
-  overflow-y: auto !important;; 
 }
 .schedule-container {
+  backdrop-filter: blur(5px);
   background-color: rgba(30, 30, 30, 0.8); /* Dark background for the content */
   border-radius: 10px; /* Optional rounded corners */
   padding: 20px; /* Space inside the content box */
@@ -20,7 +18,7 @@
   max-width: 1000px; /* Limit maximum width of the content box */
   overflow-y: auto; /* Allow scrolling for long content */
   height: 70vh; /* Set height for the container */
-  margin-top: 30px; /* Adjust margin to position higher */
+  margin-top: 23em; /* Adjust margin to position higher */
   margin-bottom: 0; /* Ensure no bottom margin */
 }
 /* Optional: Add media query for smaller screens */

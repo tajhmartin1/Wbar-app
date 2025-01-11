@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './DJSched.css';
+import './Schedule.css';
 const schedule = {
     Monday: {
         '12AM-2AM': 'Bootgaze',
