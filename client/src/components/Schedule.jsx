@@ -103,7 +103,7 @@ function ShowWithTime({time, show}) {
     );
 }
 
-function DJSched() {
+function Schedule() {
     const [currentShow, setCurrentShow] = useState(null);
     const [currentTimeSlot, setCurrentTimeSlot] = useState('');
     const [currentDay, setCurrentDay] = useState('');
@@ -169,4 +169,4 @@ function DJSched() {
     );
 }
 
-export default DJSched;
+export default Schedule;

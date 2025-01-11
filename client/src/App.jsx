@@ -8,7 +8,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import About from './components/About';
 import Events from './components/Events';
-import DjSched from './components/DjSched';
+import Schedule from './components/Schedule';
 import SparkleCursor from './components/SparkleCursor';
 import { DndContext, useDroppable } from "@dnd-kit/core";
 import FeedbackForm from "./components/FeedbackForm";
@@ -39,7 +39,7 @@ function App() {
                         <Route path="/about" element={<About />} />
                         <Route path="/events" element={<Events />} />
                         <Route path="/help" element={<FeedbackForm />} />
-                        <Route path="/" element={<DjSched />} />
+                        <Route path="/" element={<Schedule />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>
                     <Link to={"/help"}>
