@@ -112,8 +112,6 @@ function Schedule() {
             const now = new Date();
             const day = now.toLocaleString('en-US', {weekday: 'long', timeZone: 'America/New_York'});
             const hours = now.toLocaleString('en-US', {hour: 'numeric', hour12: false, timeZone: 'America/New_York'});
-            const minutes = now.toLocaleString('en-US', {minute: 'numeric', timeZone: 'America/New_York'});
-            const time = `${(hours % 12) || 12}${minutes >= 30 ? 'PM' : 'AM'}`;
             let timeSlot = '';
             if (hours >= 0 && hours < 2) timeSlot = '12AM-2AM';
             else if (hours >= 2 && hours < 4) timeSlot = '2AM-4AM';

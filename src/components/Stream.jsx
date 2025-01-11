@@ -1,11 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react';
 import './Stream.css';
+
 // import Waveform from './Waveform';
 
 function Stream() {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(.5);
+    const volume = .5
     const ctx = useRef(null);
     const volumeGainRef = useRef(null);
     const waveformGainRef = useRef(null);

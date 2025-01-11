@@ -11,6 +11,7 @@
 
 # production
 */build
+build
 client/deploy.sh
 
 # misc
@@ -23,6 +24,4 @@ client/deploy.sh
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/server/.env
-/client/build/
 

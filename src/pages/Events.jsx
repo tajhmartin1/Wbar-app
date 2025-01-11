@@ -9,7 +9,6 @@ const pastImage2 ="wbar_apps_due.png"
 const pastImage3 ="wbar join '23 Flyer (1).png";
 const pastImage4 ="wbar-april-29.png"
 const pastImage5 = "wbar-2.17.jpg"
-const pastImage6 = "wbbq.png"
 
 function Events() {
   return (
