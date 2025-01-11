@@ -6,15 +6,13 @@ import './WBARNavbar.css';
 import Stream from './Stream';
 import { Link } from 'react-router-dom';
 
-import wbarImage from './wbar-title-v2.png';
-
 const WBARNavbar = () => {
     return (
         <Navbar sticky={"top"} className={"bg-black"} expand="lg" variant='dark'>
             <Container id={'navbar-container'}>
                 <Navbar.Brand as={Link} to="/">
                     <img
-                        src={wbarImage}
+                        src={"wbar-title-v2.png"}
                         alt="WBAR"
                         style={{height: '40px'}} // Adjusted width and display
                     />

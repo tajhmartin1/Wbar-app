@@ -44,31 +44,31 @@ function About() {
         <p></p>
         <div className="grid-container">
           <div className="staff-item">
-            <img src={require('./maeve.jpg')} alt="Staff Member 1" className="staff-image" />
+            <img src="maeve.jpg" alt="Staff Member 1" className="staff-image" />
             <p className="staff-name">Maeve</p>
           </div>
           <div className="staff-item">
-            <img src={require('./maura.png')} alt="Staff Member 2" className="staff-image" />
+            <img src={'maura.png'} alt="Staff Member 2" className="staff-image" />
             <p className="staff-name">Maura</p>
           </div>
           <div className="staff-item">
-            <img src={require('./fernanda.png')} alt="Staff Member 3" className="staff-image" />
+            <img src={'fernanda.png'} alt="Staff Member 3" className="staff-image" />
             <p className="staff-name">Fernanda</p>
           </div>
           <div className="staff-item">
-            <img src={require('./tajh.jpg')} alt="Staff Member 4" className="staff-image" />
+            <img src={'tajh.jpg'} alt="Staff Member 4" className="staff-image" />
             <p className="staff-name">Tajh</p>
           </div>
           <div className="staff-item">
-            <img src={require('./zoe.png')} alt="Staff Member 5" className="staff-image" />
+            <img src={'zoe.png'} alt="Staff Member 5" className="staff-image" />
             <p className="staff-name">Zoe</p>
           </div>
           <div className="staff-item">
-            <img src={require('./julia.png')} alt="Staff Member 5" className="staff-image" />
+            <img src={'julia.png'} alt="Staff Member 5" className="staff-image" />
             <p className="staff-name">Julia</p>
           </div>
           <div className="staff-item">
-            <img src={require('./isis.jpg')} alt="Staff Member 6" className="staff-image" />
+            <img src={'isis.jpg'} alt="Staff Member 6" className="staff-image" />
             <p className="staff-name">Isis</p>
           </div>
 

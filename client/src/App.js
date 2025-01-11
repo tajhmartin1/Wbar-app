@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import WBARNavbar from './Components/WBARNavbar';
-import Chat from './Components/Chat';
+import WBARNavbar from './components/WBARNavbar';
+import Chat from './components/Chat';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css.map';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
-import About from './Components/About';
-import Events from './Components/Events';
-import DjSched from './Components/DjSched';
-import SparkleCursor from './Components/SparkleCursor';
+import About from './components/About';
+import Events from './components/Events';
+import DjSched from './components/DjSched';
+import SparkleCursor from './components/SparkleCursor';
 import { DndContext, useDroppable } from "@dnd-kit/core";
-import FeedbackForm from "./Components/FeedbackForm";
+import FeedbackForm from "./components/FeedbackForm";
+import Login from "./components/loginPages/Login";
 
 function App() {
     const { setNodeRef } = useDroppable({
@@ -39,6 +40,7 @@ function App() {
                         <Route path="/events" element={<Events />} />
                         <Route path="/help" element={<FeedbackForm />} />
                         <Route path="/" element={<DjSched />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                     <Link to={"/help"}>
                         <div id={"link-to-form"} className={"d-flex flex-column justify-content-center"}>

@@ -3,13 +3,13 @@ import './events.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Add this line for Bootstrap JavaScript
 
-const nextImage = require("./streaming.png");
-const pastImage1 = require("./wbar-12.02.png");
-const pastImage2 = require("./wbar_apps_due.png");
-const pastImage3 = require("./wbar join '23 Flyer (1).png");
-const pastImage4 = require("./wbar-april-29.png");
-const pastImage5 = require("./wbar-2.17.jpg");
-const pastImage6 = require("./wbbq.png");
+const nextImage = "streaming.png"
+const pastImage1 = "wbar-12.02.png"
+const pastImage2 ="wbar_apps_due.png"
+const pastImage3 ="wbar join '23 Flyer (1).png";
+const pastImage4 ="wbar-april-29.png"
+const pastImage5 = "wbar-2.17.jpg"
+const pastImage6 = "wbbq.png"
 
 function Events() {
   return (

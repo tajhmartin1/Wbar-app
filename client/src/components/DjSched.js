@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './DJSched.css';
-
-const image = require("./wbar-dj-sched.jpg");
 const schedule = {
     Monday: {
         '12AM-2AM': 'Bootgaze',
@@ -140,7 +138,7 @@ function DJSched() {
     }, []);
     return (
         <div className="outer-container">
-            <div className="schedule-container"> {/* Changed container to schedule-container */}
+            <div className="schedule-container">
                 <h1 className="text-center mt-5">DJ Schedule</h1>
                 <div className="current-show">
                     <h2>Currently Playing:</h2>
