@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const WBARNavbar = () => {
     return (
-        <Navbar sticky={"top"} className={"bg-black"} expand="lg" variant='dark'>
+        <Navbar sticky={"top"} style={{background:"none"}} expand="lg">
             <Container id={'navbar-container'}>
                 <Navbar.Brand as={Link} to="/">
                     <img

@@ -11,7 +11,7 @@ function Waveform({ isPlaying, analyser }) {
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Set initial width
+        handleResize(); // initial width
 
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -41,7 +41,7 @@ function Waveform({ isPlaying, analyser }) {
 
             if (!isPlaying) {
                 // Draw a horizontal line when paused
-                canvasCtx.strokeStyle = 'rgba(0,0,0,0.5)'; // Semi-transparent black
+                canvasCtx.strokeStyle = 'rgba(0,0,0,0.5)';
                 canvasCtx.lineWidth = barWidth;
                 canvasCtx.beginPath();
                 canvasCtx.moveTo(0, canvas.height / 2);
@@ -63,7 +63,7 @@ function Waveform({ isPlaying, analyser }) {
                 canvasCtx.fillRect(x, canvas.height / 2 - barHeight / 2, barWidth, barHeight);
 
                 x += barWidth + 1;
-                sum += Math.abs(v - 1); // Calculate the amplitude
+                sum += Math.abs(v - 1);
             }
         }
 

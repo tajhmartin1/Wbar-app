@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import './Stream.css';
-import Waveform from './Waveform';
+// import Waveform from './Waveform';
 
 function Stream() {
     const audioRef = useRef(null);
@@ -73,11 +73,11 @@ function Stream() {
                     <div className={'text-white'}>LIVE</div>
                     <i className={`bi h3 ${isPlaying ? "bi-stop-circle-fill" : "bi-play-circle-fill"} text-white`}
                        onClick={handleTogglePlayState}/>
-                   <Waveform
-    isPlaying={isPlaying}
-    analyser={analyser.current}
-    color="#ff5722" // Custom waveform color (e.g., orange)
-/>
+                    {/*<Waveform*/}
+                    {/*    isPlaying={isPlaying}*/}
+                    {/*    analyser={analyser.current}*/}
+                    {/*    color="#ff5722"*/}
+                    {/*/>*/}
 
                 </div>
             </div>

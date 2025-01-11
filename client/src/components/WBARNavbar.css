@@ -14,10 +14,12 @@
 #navbar-container {
   display: flex;
   justify-content: space-between;
-  background-color:#512f74;/* Navbar color */
-  margin: 10px auto; /* Center with margin */
-  padding: 10px 20px; /* Add spacing inside the navbar */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Floating shadow effect */
+  background-color: rgba(81, 47, 116, 0.8);/* Navbar color */
+  backdrop-filter: blur(15px);
+  z-index: 100;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
