@@ -1,5 +1,6 @@
 .outer-container {
-  background-image: url('../../public/background_tester.JPG'); /* Background image */
+  /*filter: grayscale(100%);*/
+  background-image:  url('../../public/background_tester.JPG'); /* Background image */
   margin-top: -20em;
   background-size: cover;
   background-attachment: fixed;
@@ -79,5 +80,5 @@ h1 {
   color: white;
 }
 .time {
-  color: #666;
+  color: rgba(255, 255, 255, 0.46);
 }

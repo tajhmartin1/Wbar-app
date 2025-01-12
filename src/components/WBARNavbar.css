@@ -7,15 +7,19 @@
 }
 
 .nav-link:hover {
-  background-color: #452663; /* Change the background color on hover */
+  background-color: rgba(0,0,0,.1); /* Change the background color on hover */
 }
 
+#wbar-logo {
+  filter: contrast(140%) ; /* Invert the logo colors */
+}
 
 #navbar-container {
   display: flex;
   justify-content: space-between;
-  background-color: rgba(81, 47, 116, 0.8);/* Navbar color */
-  backdrop-filter: blur(15px);
+  background-color: rgba(154, 29, 227, 0.3);
+  /*background-color: rgba(0, 0, 0, 0.34);*/
+  backdrop-filter: blur(25px);
   z-index: 100;
   margin: 10px auto;
   padding: 20px 30px;

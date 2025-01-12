@@ -1,104 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
-.App {
-  font-family: "Newsreader", serif;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.StickyStream{
-  width: 100%;
-}
-
-
-.scrollable-container {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-}
-/* App.css */
-/* Remove the conflicting rule */
 html, body, .App {
-  background-color: black; /* Dark background for the content */
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: auto; /* Ensure scrolling is enabled */
-}
+    font-family: "Newsreader", serif;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
 
-/* Adjust this as needed for nested containers */
-body, .App {
-  overflow: auto; /* Ensure scrolling is enabled */
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    /* default text color = white. Easily overriden in other components */
+    color: var(--bs-white);
 }
-
 
 #link-to-form {
-  color: var(--bs-white);
-  position: fixed;
-  font-size: 3em;
-  left: 25px;
-  bottom:0;
-  z-index: 1000;
-  cursor: pointer;
+    color: var(--bs-white);
+    position: fixed;
+    font-size: 3em;
+    left: 25px;
+    bottom: 0;
+    z-index: 1000;
+    cursor: pointer;
 }
+
 #link-to-form:hover {
     color: #e0cde8 !important;
 }
 
-body, .App {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-/* Default scrolling behavior */
-html, body {
-  overflow: auto;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 /* Disable scrolling for the home page */
 body.no-scroll {
-  overflow: hidden; /* Prevent scrolling */
+    overflow: hidden;
+}
+
+
+/* Form styles! Overrides bootstrap defaults and makes forms "dark mode" */
+input, select, textarea {
+    background-color: var(--bs-dark) !important;
+    border-color: var(--bs-dark-border-subtle) !important;
+    color: var(--bs-white) !important;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.56) !important;
 }

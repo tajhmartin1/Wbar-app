@@ -3,7 +3,6 @@ import './SparkleCursor.css';
 
 const SparkleCursor = () => {
   const [sparkles, setSparkles] = useState([]);
-
   useEffect(() => {
     const addSparkle = (e) => {
       const x = e.touches ? e.touches[0].clientX : e.clientX;

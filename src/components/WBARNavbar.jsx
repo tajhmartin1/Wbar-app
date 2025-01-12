@@ -8,13 +8,14 @@ import { Link } from 'react-router-dom';
 
 const WBARNavbar = () => {
     return (
-        <Navbar sticky={"top"} style={{background:"none"}} expand="lg">
+        <Navbar sticky={"top"} style={{background:"none"}} expand="lg" variant={"dark"}>
             <Container id={'navbar-container'}>
                 <Navbar.Brand as={Link} to="/">
                     <img
+                        id={"wbar-logo"}
                         src={"wbar-title-v2.png"}
-                        alt="WBAR"
-                        style={{height: '40px'}} // Adjusted width and display
+                        alt="WBAR logo"
+                        style={{height: '40px' }}
                     />
                 </Navbar.Brand>
                 <Stream/>
