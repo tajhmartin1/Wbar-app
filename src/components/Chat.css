@@ -39,12 +39,12 @@
 
 #chat-h-grip {
     cursor: move;
-    /*margin: auto;*/
+    color: var(--bs-gray-dark);
     padding: 0 10% ;
 }
 
-#chat-h-grip:hover {
-    color: var(--bs-black);
+.chat-resize {
+    color: var(--bs-gray-dark);
 }
 
 #close-chat {
@@ -52,7 +52,8 @@
     cursor: pointer;
 }
 
-#chat-to-margin {
+#chat-to-margin{
+    color: var(--bs-gray-dark);
     cursor: pointer;
 }
 

@@ -1,5 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import './Stream.css';
+import {PlayCircleFill, StopCircleFill} from "react-bootstrap-icons";
 
 // import Waveform from './Waveform';
 
@@ -72,8 +73,10 @@ function Stream() {
                     <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
                            title="WBAR RADIO"></audio>
                     <div className={'text-white'}>LIVE</div>
-                    <i className={`bi h3 ${isPlaying ? "bi-stop-circle-fill" : "bi-play-circle-fill"} text-white`}
-                       onClick={handleTogglePlayState}/>
+
+                    <div className={"h3 text-white ps-3"} onClick={handleTogglePlayState}>
+                        {isPlaying ? <StopCircleFill/> : < PlayCircleFill className={"b3 text-white"}/>}
+                    </div>
                     {/*<Waveform*/}
                     {/*    isPlaying={isPlaying}*/}
                     {/*    analyser={analyser.current}*/}

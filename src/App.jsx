@@ -14,7 +14,10 @@ import {DndContext, useDroppable} from "@dnd-kit/core";
 import FeedbackForm from "./pages/FeedbackForm";
 import Login from "./pages/loginPages/Login";
 import Dashboard from "./pages/Dashboard";
-import AuthWrapper from "./pages/loginPages/AuthWrapper";
+import RequireAuth from "./pages/loginPages/RequireAuth";
+import Register from "./pages/loginPages/Register";
+import CreateAccount from "./pages/loginPages/CreateAccount";
+import {QuestionCircleFill} from "react-bootstrap-icons";
 
 function App() {
     const {setNodeRef} = useDroppable({
@@ -52,7 +55,7 @@ function App() {
                     </Routes>
                     <Link to={"/help"}>
                         <div id={"link-to-form"} className={"d-flex flex-column justify-content-center"}>
-                            <i className="h1 text-white bi bi-question-circle-fill"/>
+                            <QuestionCircleFill className="h1 text-white"/>
                             <div className={"h6"}>stream issues</div>
                         </div>
                     </Link>
