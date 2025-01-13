@@ -6,14 +6,18 @@ import "./CreateAccount.css";
 const CreateAccount = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        uni: "",
-        affiliation: "",
-        displayName: "",
-        gradYear: "",
-        mailingList: true,
+        firstName: {value: "", allowValidation: false},
+        lastName: {value: "", allowValidation: false},
+        uni: {value: "", allowValidation: false},
+        affiliation: {value: "", allowValidation: false},
+        alias: {value: "", allowValidation: false},
+        gradYear: {value: "", allowValidation: false},
+        mailingList: {value: true}, // mailing list is optional
     });
+
+    const stepFields = [["firstName", "lastName", "uni", "affiliation", "gradYear"], ["alias"]];
+
+    const [canMoveToNextStep, setCanMoveToNextStep] = useState(false);
 
     const currentYear = new Date().getFullYear();
     const years = Array.from({length: 6}, (_, i) => currentYear - 1 + i);
@@ -31,36 +35,60 @@ const CreateAccount = () => {
     const [errors, setErrors] = useState({});
     const [firstName, setFirstName] = useState("");
 
+    const formDataIsValid = (currentFormData, step) => {
+        const newErrors = {};
+        Object.entries(currentFormData).forEach(([field, attributes]) => {
+            if (!stepFields[step].includes(field)) return;
+            const error = validateInput(
+                field,
+                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
+            );
+            if (error) newErrors[field] = error;
+        });
+        console.log("formDataIsValid", newErrors);
+        return Object.keys(newErrors).length === 0
+    }
+
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prevData) => ({...prevData, [name]: value}));
-        console.log({[name]: value});
+        const {name, value, type, checked} = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]:
+                {
+                    value: type === "checkbox" ? checked : value,
+                    allowValidation: true
+                }
+        }));
     };
 
     useEffect(() => {
         const newErrors = {};
-        Object.entries(formData).forEach(([field, value]) => {
-            const error = validateInput(field, value);
-            if (error) newErrors[field] = error;
+        Object.entries(formData).forEach(([field, attributes]) => {
+            if (attributes.allowValidation) {
+                const error = validateInput(field, typeof attributes.value === "string" ? attributes.value.trim() : attributes.value);
+                if (error) newErrors[field] = error;
+            }
         });
         setErrors(newErrors);
+        setCanMoveToNextStep(formDataIsValid(formData, currentStep));
     }, [formData]);
 
-    const validateInput = (name, value) => {
-        switch (name) {
+    const validateInput = (fieldName, value) => {
+        switch (fieldName) {
             case "firstName":
             case "lastName":
                 return value.length === 0 ? "This field is required" : "";
             case "email":
+                value = value.trim();
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
                     ? ""
                     : "Invalid email address";
             case "affiliation":
                 return (affiliations.some(affiliation => affiliation.value === value) && value.length !== 0) ? "" : "Please select an affiliation.";
             case "gradYear":
-                return formData.affiliation === "unaffiliated" || years.includes(parseInt(value)) ? "" : "Invalid graduation year.";
+                return formData.affiliation.value === "unaffiliated" || years.includes(parseInt(value)) ? "" : "Invalid graduation year.";
             case "uni":
-                return (formData.affiliation === "unaffiliated" || value.length !== 0) ? "" : "This field is required";
+                return (formData.affiliation.value === "unaffiliated" || value.length !== 0) ? "" : "This field is required";
             case "alias":
                 return value.length === 0 ? "You need to pick an alias." : "";
             default:
@@ -77,19 +105,27 @@ const CreateAccount = () => {
                 ]),
             ),
         );
-        setFirstName(formData.firstName);
-        setCurrentStep((prevStep) => prevStep + 1);
+        setFirstName(formData.firstName.value);
+        setCurrentStep((step) => step + 1);
+        setCanMoveToNextStep(formDataIsValid(formData, currentStep));
     };
 
-    const prev = () => setCurrentStep((prevStep) => prevStep - 1);
+    const prev = () => {
+        setCanMoveToNextStep(formDataIsValid(formData, currentStep - 1));
+        setCurrentStep((step) => step - 1);
+
+    };
 
     const submitForm = async () => {
         const newErrors = {};
-        Object.entries(formData).forEach(([field, value]) => {
+        const dataToSend = {};
+        Object.entries(formData).forEach(([field, attributes]) => {
             const error = validateInput(
                 field,
-                typeof value === "string" ? value.trim() : value,
+                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
             );
+
+            dataToSend[field] = attributes.value;
             if (error) newErrors[field] = error;
         });
 
@@ -98,13 +134,15 @@ const CreateAccount = () => {
             return;
         }
 
-        console.log("Submitting form", formData);
-    };
+        if (formData.affiliation.value === "unaffiliated") {
+            delete dataToSend.uni;
+            delete dataToSend.gradYear;
+        }
+        console.log("Submitting form", dataToSend);
 
-    const stepFields = [
-        ["firstName", "lastName", "email", "affiliation", "uni", "gradYear"],
-        ["alias"],
-    ];
+        console.log("Subscribing to mailing list");
+    }
+
 
     const steps = [
         {
@@ -119,7 +157,7 @@ const CreateAccount = () => {
                                     size="lg"
                                     type="text"
                                     name="firstName"
-                                    value={formData.firstName}
+                                    value={formData.firstName.value}
                                     onChange={handleInputChange}
                                     isInvalid={!!errors.firstName}
                                 />
@@ -135,7 +173,7 @@ const CreateAccount = () => {
                                     size="lg"
                                     type="text"
                                     name="lastName"
-                                    value={formData.lastName}
+                                    value={formData.lastName.value}
                                     onChange={handleInputChange}
                                     isInvalid={!!errors.lastName}
                                 />
@@ -155,7 +193,7 @@ const CreateAccount = () => {
                                     size="lg"
                                     type="text"
                                     name="affiliation"
-                                    value={formData.affiliation}
+                                    value={formData.affiliation.value}
                                     onChange={handleInputChange}
                                     isInvalid={!!errors.affiliation}
                                 >
@@ -172,7 +210,7 @@ const CreateAccount = () => {
                         </Col>
                     </Row>
                     <Row>
-                        {formData.affiliation !== "unaffiliated" && formData.affiliation !== "" && (
+                        {formData.affiliation.value !== "unaffiliated" && formData.affiliation.value !== "" && (
                             <>
                                 <Col xs={6}>
                                     <Form.Group>
@@ -181,7 +219,7 @@ const CreateAccount = () => {
                                             size="lg"
                                             type="text"
                                             name="uni"
-                                            value={formData.uni}
+                                            value={formData.uni.value}
                                             onChange={handleInputChange}
                                             isInvalid={!!errors.uni}
                                         />
@@ -197,7 +235,7 @@ const CreateAccount = () => {
                                             size="lg"
                                             type="text"
                                             name="gradYear"
-                                            value={formData.gradYear}
+                                            value={formData.gradYear.value}
                                             onChange={handleInputChange}
                                             isInvalid={!!errors.gradYear}
                                         >
@@ -208,10 +246,26 @@ const CreateAccount = () => {
                                                 </option>
                                             ))}
                                         </Form.Select>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.gradYear}
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
                             </>
                         )}
+                    </Row>
+                    <Row>
+                        <Col className={'mt-4'} xs={12}>
+                            <Form.Group controlId="formBasicMailingList">
+                                <Form.Check
+                                    type="checkbox"
+                                    name="mailingList"
+                                    label="Sign me up for the WBAR mailing list"
+                                    checked={formData.mailingList.value}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
+                        </Col>
                     </Row>
                 </Form>
             ),
@@ -245,25 +299,23 @@ const CreateAccount = () => {
                                 <Form.Control
                                     size="lg"
                                     type="text"
-                                    name="displayName"
-                                    value={formData.displayName}
+                                    name="alias"
+                                    value={formData.alias.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.displayName}
+                                    isInvalid={!!errors.alias}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.displayName}
+                                    {errors.alias}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                     </Row>
                 </Form>
             ),
-        },
+        }
     ];
 
-    const hasErrorsInCurrentStep = stepFields[currentStep].some(
-        (field) => !!errors[field],
-    );
+
     return (
         <Container className="container mt-4 text-white">
             <Row>
@@ -291,7 +343,7 @@ const CreateAccount = () => {
                         <Button
                             type="primary"
                             onClick={currentStep < steps.length - 1 ? next : submitForm}
-                            disabled={hasErrorsInCurrentStep}
+                            disabled={!canMoveToNextStep}
                         >
                             {currentStep < steps.length - 1 ? "Next" : "Submit"}
                         </Button>
