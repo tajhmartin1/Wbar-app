@@ -85,7 +85,6 @@ function Register() {
 
     function checkPasswordsMatch() {
         return formData.password.value === formData.confirmPassword.value
-
     }
 
     function validateEmail() {
@@ -117,6 +116,11 @@ function Register() {
             password: {value: "", allowValidation: false},
             confirmPassword: {value: "", allowValidation: false}
         });
+        setFormErrors({
+            email: "",
+            password: "",
+            confirmPassword: ""
+        })
     };
 
 
