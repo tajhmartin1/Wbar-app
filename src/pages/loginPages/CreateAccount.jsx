@@ -78,15 +78,10 @@ const CreateAccount = () => {
             case "firstName":
             case "lastName":
                 return value.length === 0 ? "This field is required" : "";
-            case "email":
-                value = value.trim();
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-                    ? ""
-                    : "Invalid email address";
             case "affiliation":
                 return (affiliations.some(affiliation => affiliation.value === value) && value.length !== 0) ? "" : "Please select an affiliation.";
             case "gradYear":
-                return formData.affiliation.value === "unaffiliated" || years.includes(parseInt(value)) ? "" : "Invalid graduation year.";
+                return formData.affiliation.value === "unaffiliated" || years.includes(Number(value)) ? "" : "Invalid graduation year.";
             case "uni":
                 return (formData.affiliation.value === "unaffiliated" || value.length !== 0) ? "" : "This field is required";
             case "alias":
