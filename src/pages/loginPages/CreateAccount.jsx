@@ -29,7 +29,6 @@ const CreateAccount = () => {
         {value: "seas", label: "SEAS"},
         {value: "gs", label: "General Studies"},
         {value: "graduate_student", label: "Columbia graduate school"},
-        {value: "unaffiliated", label: "Unaffiliated"},
     ];
 
     const [errors, setErrors] = useState({});
@@ -81,9 +80,9 @@ const CreateAccount = () => {
             case "affiliation":
                 return (affiliations.some(affiliation => affiliation.value === value) && value.length !== 0) ? "" : "Please select an affiliation.";
             case "gradYear":
-                return formData.affiliation.value === "unaffiliated" || years.includes(Number(value)) ? "" : "Invalid graduation year.";
+                return years.includes(Number(value)) ? "" : "Invalid graduation year.";
             case "uni":
-                return (formData.affiliation.value === "unaffiliated" || value.length !== 0) ? "" : "This field is required";
+                return (value.length !== 0) ? "" : "This field is required";
             case "alias":
                 return value.length === 0 ? "You need to pick an alias." : "";
             default:
@@ -132,10 +131,6 @@ const CreateAccount = () => {
             return;
         }
 
-        if (formData.affiliation.value === "unaffiliated") {
-            delete dataToSend.uni;
-            delete dataToSend.gradYear;
-        }
         console.log("Submitting form", dataToSend);
 
         console.log("Subscribing to mailing list");
@@ -208,7 +203,7 @@ const CreateAccount = () => {
                         </Col>
                     </Row>
                     <Row>
-                        {formData.affiliation.value !== "unaffiliated" && formData.affiliation.value !== "" && (
+                        {formData.affiliation.value !== "" && (
                             <>
                                 <Col xs={6}>
                                     <Form.Group>
