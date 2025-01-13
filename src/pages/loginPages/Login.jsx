@@ -1,8 +1,9 @@
-import { useState } from "react";
+import {useState} from "react";
 import supabase from "../../supabaseClient";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Container, Row, Col, Form, Button} from "react-bootstrap";
 import "./Login.css"
+import GoogleButton from "./GoogleButton";
 
 function Login() {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Login() {
         event.preventDefault();
         setMessage("");
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const {data, error} = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         });
@@ -32,26 +33,7 @@ function Login() {
         }
     };
 
-    const handleGoogleSubmit = async (event) => {
-        event.preventDefault();
-        setMessage("");
 
-        const { user, session, error } = await supabase.auth.signInWithOAuth({
-            provider: "google",
-            redirectTo: window.location.origin + "/dashboard",
-        });
-
-        if (error) {
-            setMessage(error.message);
-            return;
-        }
-
-        console.log(session)
-        if (session) {
-            navigate("/dashboard");
-            return null;
-        }
-    }
     return (
         <Container className={"mt-5"}>
             <Row className="mt-4">
@@ -62,7 +44,8 @@ function Login() {
                     </Row>
                     <Row>
                         <Col>
-                            {message && <span className={"text-danger p-1 d-flex justify-content-start gap-1"}><i className={"bi-exclamation-circle"}/><span>{message}</span></span>}
+                            {message && <span className={"text-danger p-1 d-flex justify-content-start gap-1"}><i
+                                className={"bi-exclamation-circle"}/><span>{message}</span></span>}
 
                             <Form>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -95,25 +78,13 @@ function Login() {
                     </Row>
                     <Row>
                         <Col>
-                            <Button
-                                className="w-100 d-flex justify-content-center align-items-center gap-2"
-                                variant={"light"}
-                                onClick={handleGoogleSubmit}
-                            >
-                                <img
-                                    src="/google-icon.svg"
-                                    width="17"
-                                    height="17"
-                                    alt="google icon"
-                                />
-                                <span>Sign in with Google</span>
-                            </Button>
+                            <GoogleButton/>
                         </Col>
                     </Row>
                     <Row className={"mt-4"}>
                         <Col className={"d-flex gap-2"}>
                             <span className={'text-white'}>Don't have an account?</span>
-                            <Link to="/register">Register.</Link>
+                            <Link to="/account/register">Register.</Link>
                         </Col>
                     </Row>
                 </Col>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import supabase from "../../supabaseClient";
 import { Navigate } from "react-router-dom";
 
-function AuthWrapper({ children }) {
+function RequireAuth({ children }) {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -28,4 +28,4 @@ function AuthWrapper({ children }) {
     }
 }
 
-export default AuthWrapper;
+export default RequireAuth;

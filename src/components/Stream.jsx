@@ -7,7 +7,7 @@ import {PlayCircleFill, StopCircleFill} from "react-bootstrap-icons";
 function Stream() {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const volume = .5
+    const volume = 0.5
     const ctx = useRef(null);
     const volumeGainRef = useRef(null);
     const waveformGainRef = useRef(null);
@@ -73,7 +73,6 @@ function Stream() {
                     <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
                            title="WBAR RADIO"></audio>
                     <div className={'text-white'}>LIVE</div>
-
                     <div className={"h3 text-white ps-3"} onClick={handleTogglePlayState}>
                         {isPlaying ? <StopCircleFill/> : < PlayCircleFill className={"b3 text-white"}/>}
                     </div>

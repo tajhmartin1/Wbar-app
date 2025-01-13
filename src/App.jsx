@@ -2,9 +2,6 @@ import React, {useEffect} from 'react';
 import './App.css';
 import WBARNavbar from './components/WBARNavbar';
 import Chat from './components/Chat';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css.map';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import {BrowserRouter as Router, Routes, Route, Link, useLocation} from "react-router-dom";
 import About from './pages/About';
 import Events from './pages/Events';
@@ -41,16 +38,23 @@ function App() {
                 <WBARNavbar/>
                 <div ref={setNodeRef}>
                     <Routes>
+                        <Route path="/" element={<Schedule/>}/>
                         <Route path="/about" element={<About/>}/>
                         <Route path="/events" element={<Events/>}/>
                         <Route path="/help" element={<FeedbackForm/>}/>
-                        <Route path="/" element={<Schedule/>}/>
                         <Route path="/login" element={<Login/>}/>
+                        <Route path="/account/register" element={<Register/>}/>
+
+                        <Route path={"/account/new"} element={
+                            <RequireAuth>
+                                <CreateAccount/>
+                            </RequireAuth>
+                        }/>
 
                         <Route path="/dashboard" element={
-                            <AuthWrapper>
+                            <RequireAuth>
                                 <Dashboard/>
-                            </AuthWrapper>
+                            </RequireAuth>
                         }/>
                     </Routes>
                     <Link to={"/help"}>
