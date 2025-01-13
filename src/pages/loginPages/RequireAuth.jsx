@@ -6,7 +6,8 @@ function RequireAuth({ children }) {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    useEffect(() =>  {
+        // Get the session from local storage. If necessary then refresh access_token
         const getSession = async () => {
             const {
                 data: { session },

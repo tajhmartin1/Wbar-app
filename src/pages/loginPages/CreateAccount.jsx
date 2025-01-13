@@ -45,7 +45,7 @@ const CreateAccount = () => {
             );
             if (error) newErrors[field] = error;
         });
-        console.log("formDataIsValid", newErrors);
+        // console.log("formDataIsValid", newErrors);
         return Object.keys(newErrors).length === 0
     }
 
@@ -121,6 +121,9 @@ const CreateAccount = () => {
             );
 
             dataToSend[field] = attributes.value;
+            if (attributes.value === "") {
+                delete dataToSend[field];
+            }
             if (error) newErrors[field] = error;
         });
 
@@ -273,7 +276,7 @@ const CreateAccount = () => {
                         <Col sm={12} className="mb-3">
                             <div id="warning-box" className="p-4 pb-2">
                                 <div>
-                                    <div className="h6 d-flex gap-2">
+                                    <div className="h6 d-flex mx-auto gap-2 justify-items-start">
                                         <ExclamationTriangle
                                             className="bi bi-exclamation-triangle"></ExclamationTriangle>
                                         <strong>Choose carefully!</strong>

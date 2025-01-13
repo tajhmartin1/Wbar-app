@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="fetch schedule from server.js" />
+    <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
+      <change beforePath="$PROJECT_DIR$/src/components/Stream.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Stream.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,24 +49,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.server.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/ava/github/wbar-app&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/ava/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.server.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "ava-branch",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ava/github/wbar-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "/Users/ava/Applications/IntelliJ IDEA Ultimate.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client" />
@@ -118,7 +124,47 @@
       <option name="project" value="LOCAL" />
       <updated>1728842443675</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create account workflow clientside">
+      <option name="closed" value="true" />
+      <created>1736730850425</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1736730850425</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Create account workflow clientside">
+      <option name="closed" value="true" />
+      <created>1736730857496</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736730857496</updated>
+    </task>
+    <task id="LOCAL-00004" summary="show errors only if field has been modified">
+      <option name="closed" value="true" />
+      <created>1736731890215</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736731890215</updated>
+    </task>
+    <task id="LOCAL-00005" summary="show errors only if field has been modified">
+      <option name="closed" value="true" />
+      <created>1736737224753</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736737224753</updated>
+    </task>
+    <task id="LOCAL-00006" summary="show errors only if field has been modified">
+      <option name="closed" value="true" />
+      <created>1736738179905</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736738179905</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +184,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="move stream to navbar" />
     <MESSAGE value="fetch schedule from server.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetch schedule from server.js" />
+    <MESSAGE value="Create account workflow clientside" />
+    <MESSAGE value="show errors only if field has been modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="show errors only if field has been modified" />
   </component>
 </project>

@@ -40,7 +40,7 @@ function Login() {
                 <Col xs={1} md={3}/>
                 <Col xs={10} md={6}>
                     <Row>
-                        <h1>Staff login</h1>
+                        <h1>Log in to WBAR Radio</h1>
                     </Row>
                     <Row>
                         <Col>
