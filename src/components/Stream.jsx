@@ -69,7 +69,7 @@ function Stream() {
     return (
         <div className={'d-flex justify-content-center'}>
             <div id="stream-box">
-                <div className={'d-flex'}>
+                <div className={'d-flex align-items-center'}>
                     <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
                            title="WBAR RADIO"></audio>
                     <div className={'text-white'}>LIVE</div>
