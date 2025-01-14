@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import supabase from "../../supabaseClient";
 import {useNavigate} from "react-router-dom";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
@@ -22,13 +22,25 @@ function Register() {
         confirmPassword: "",
     });
 
+    const checkPasswordsMatch = useCallback(() => {
+        return formData.password.value === formData.confirmPassword.value
+    }, [formData.confirmPassword.value, formData.password.value]);
 
-    function checkIfCanSubmit() {
+    const validateEmail = useCallback(() => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(formData.email.value)
+    }, [formData.email.value]);
+
+    const validatePasswordLength = useCallback((field) => {
+        return formData[field].value.length >= 8;
+    }, [formData])
+
+    const checkIfCanSubmit = useCallback(() => {
         return (validateEmail() &&
             validatePasswordLength("password") &&
             validatePasswordLength("confirmPassword") &&
             checkPasswordsMatch())
-    }
+    }, [checkPasswordsMatch, validateEmail, validatePasswordLength]);
 
     const noErrorMsg = "Looks good!";
 
@@ -46,7 +58,7 @@ function Register() {
                 email: !isValidEmail && "Please enter a valid email address",
             }));
         }
-    }, [formData.email.value]);
+    }, [formData.email.value, formData.email.allowValidation, validateEmail]);
     useEffect(() => {
         if (formData.password.allowValidation) {
             const isLongEnough = validatePasswordLength("password");
@@ -55,7 +67,8 @@ function Register() {
                 password: !isLongEnough && "Password must be at least 8 characters long",
             }));
         }
-    }, [formData.password.value]);
+    }, [formData.password.value, formData.password.allowValidation, validateEmail, validatePasswordLength]);
+
     useEffect(() => {
         if (formData.confirmPassword.allowValidation) {
             const isLongEnough = validatePasswordLength("confirmPassword")
@@ -64,7 +77,8 @@ function Register() {
                 confirmPassword: !isLongEnough && "Password must be at least 8 characters long",
             }));
         }
-    }, [formData.confirmPassword.value]);
+    }, [formData.confirmPassword, validatePasswordLength]);
+
     useEffect(() => {
         if (formData.confirmPassword.allowValidation && formData.password.allowValidation) {
             const passwordsMatch = checkPasswordsMatch();
@@ -73,24 +87,12 @@ function Register() {
                 confirmPassword: !passwordsMatch && "Passwords do not match.",
             }));
         }
-    }, [formData.confirmPassword.value, formData.password.value]);
+    }, [formData.confirmPassword, formData.password, checkPasswordsMatch]);
 
     useEffect(() => {
         setCanSubmit(checkIfCanSubmit());
-    }, [formData]);
+    }, [formData, checkIfCanSubmit]);
 
-    function validatePasswordLength(field) {
-        return formData[field].value.length >= 8;
-    }
-
-    function checkPasswordsMatch() {
-        return formData.password.value === formData.confirmPassword.value
-    }
-
-    function validateEmail() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(formData.email.value)
-    }
 
     const handlePasswordSubmit = async (event) => {
         event.preventDefault();

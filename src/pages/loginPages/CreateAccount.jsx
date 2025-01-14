@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback, useMemo} from "react";
 import {Form, Row, Col, Button, Container} from "react-bootstrap";
 import {ExclamationTriangle} from "react-bootstrap-icons";
 import "./CreateAccount.css";
@@ -15,64 +15,27 @@ const CreateAccount = () => {
         mailingList: {value: true}, // mailing list is optional
     });
 
-    const stepFields = [["firstName", "lastName", "uni", "affiliation", "gradYear"], ["alias"]];
 
     const [canMoveToNextStep, setCanMoveToNextStep] = useState(false);
 
     const currentYear = new Date().getFullYear();
     const years = Array.from({length: 6}, (_, i) => currentYear - 1 + i);
 
-    const affiliations = [
-        {value: "", label: "Select..."},
-        {value: "barnard", label: "Barnard"},
-        {value: "cc", label: "Columbia College"},
-        {value: "seas", label: "SEAS"},
-        {value: "gs", label: "General Studies"},
-        {value: "graduate_student", label: "Columbia graduate school"},
-    ];
+    const affiliations = useMemo(() => {
+        return [
+            {value: "", label: "Select..."},
+            {value: "barnard", label: "Barnard"},
+            {value: "cc", label: "Columbia College"},
+            {value: "seas", label: "SEAS"},
+            {value: "gs", label: "General Studies"},
+            {value: "graduate_student", label: "Columbia graduate school"}
+        ];
+    }, []);
 
     const [errors, setErrors] = useState({});
     const [firstName, setFirstName] = useState("");
 
-    const formDataIsValid = (currentFormData, step) => {
-        const newErrors = {};
-        Object.entries(currentFormData).forEach(([field, attributes]) => {
-            if (!stepFields[step].includes(field)) return;
-            const error = validateInput(
-                field,
-                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
-            );
-            if (error) newErrors[field] = error;
-        });
-        // console.log("formDataIsValid", newErrors);
-        return Object.keys(newErrors).length === 0
-    }
-
-    const handleInputChange = (e) => {
-        const {name, value, type, checked} = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]:
-                {
-                    value: type === "checkbox" ? checked : value,
-                    allowValidation: true
-                }
-        }));
-    };
-
-    useEffect(() => {
-        const newErrors = {};
-        Object.entries(formData).forEach(([field, attributes]) => {
-            if (attributes.allowValidation) {
-                const error = validateInput(field, typeof attributes.value === "string" ? attributes.value.trim() : attributes.value);
-                if (error) newErrors[field] = error;
-            }
-        });
-        setErrors(newErrors);
-        setCanMoveToNextStep(formDataIsValid(formData, currentStep));
-    }, [formData]);
-
-    const validateInput = (fieldName, value) => {
+    const validateInput = useCallback((fieldName, value) => {
         switch (fieldName) {
             case "firstName":
             case "lastName":
@@ -88,7 +51,59 @@ const CreateAccount = () => {
             default:
                 return "";
         }
+    }, [affiliations, years]);
+
+
+    const formDataIsValid = useCallback((currentFormData, step) => {
+        const newErrors = {};
+        const stepFields = [["firstName", "lastName", "uni", "affiliation", "gradYear"], ["alias"]];
+        Object.entries(currentFormData).forEach(([field, attributes]) => {
+            if (!stepFields[step].includes(field)) return;
+            const error = validateInput(
+                field,
+                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
+            );
+            if (error) newErrors[field] = error;
+        });
+        return Object.keys(newErrors).length === 0
+    }, [validateInput]);
+
+    const handleInputChange = (e) => {
+        const {name, value, type, checked} = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]:
+                {
+                    value: type === "checkbox" ? checked : value,
+                    allowValidation: true
+                }
+        }));
     };
+
+
+    useEffect(() => {
+        const newErrors = {};
+        Object.entries(formData).forEach(([field, attributes]) => {
+            if (attributes.allowValidation) {
+                const error = validateInput(field, typeof attributes.value === "string" ? attributes.value.trim() : attributes.value);
+                if (error) newErrors[field] = error;
+            }
+        });
+
+        if (JSON.stringify(newErrors) !== JSON.stringify(errors)) {
+            setErrors(newErrors);
+        }
+
+        const canMove = formDataIsValid(formData, currentStep);
+        if (canMove !== canMoveToNextStep) {
+            setCanMoveToNextStep(canMove);
+        }
+    }, [formData, currentStep, formDataIsValid, validateInput, errors, canMoveToNextStep]);
+
+
+    const validateAliasUnique = (alias) => {
+        return alias === "unique" ? "This alias is already taken." : "";
+    }
 
     const next = () => {
         setFormData((prevData) =>
@@ -296,9 +311,13 @@ const CreateAccount = () => {
                                     value={formData.alias.value}
                                     onChange={handleInputChange}
                                     isInvalid={!!errors.alias}
+                                    isValid={!(!!errors.alias) && formData.alias.allowValidation}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {errors.alias}
+                                </Form.Control.Feedback>
+                                <Form.Control.Feedback type="valid">
+                                    Looks good!
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
