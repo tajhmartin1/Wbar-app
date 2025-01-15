@@ -6,13 +6,13 @@ import "./CreateAccount.css";
 const CreateAccount = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
-        firstName: {value: "", allowValidation: false},
-        lastName: {value: "", allowValidation: false},
+        first_name: {value: "", allowValidation: false},
+        last_name: {value: "", allowValidation: false},
         uni: {value: "", allowValidation: false},
         affiliation: {value: "", allowValidation: false},
-        alias: {value: "", allowValidation: false},
-        gradYear: {value: "", allowValidation: false},
-        mailingList: {value: true}, // mailing list is optional
+        dj_name: {value: "", allowValidation: false},
+        grad_year: {value: "", allowValidation: false},
+        mailing_list: {value: true}, // mailing list is optional
     });
 
 
@@ -37,17 +37,17 @@ const CreateAccount = () => {
 
     const validateInput = useCallback((fieldName, value) => {
         switch (fieldName) {
-            case "firstName":
-            case "lastName":
+            case "first_name":
+            case "last_name":
                 return value.length === 0 ? "This field is required" : "";
             case "affiliation":
                 return (affiliations.some(affiliation => affiliation.value === value) && value.length !== 0) ? "" : "Please select an affiliation.";
-            case "gradYear":
+            case "grad_year":
                 return years.includes(Number(value)) ? "" : "Invalid graduation year.";
             case "uni":
                 return (value.length !== 0) ? "" : "This field is required";
-            case "alias":
-                return value.length === 0 ? "You need to pick an alias." : "";
+            case "dj_name":
+                return value.length === 0 ? "You need to pick a DJ name." : "";
             default:
                 return "";
         }
@@ -56,7 +56,7 @@ const CreateAccount = () => {
 
     const formDataIsValid = useCallback((currentFormData, step) => {
         const newErrors = {};
-        const stepFields = [["firstName", "lastName", "uni", "affiliation", "gradYear"], ["alias"]];
+        const stepFields = [["first_name", "last_name", "uni", "affiliation", "grad_year"], ["dj_name"]];
         Object.entries(currentFormData).forEach(([field, attributes]) => {
             if (!stepFields[step].includes(field)) return;
             const error = validateInput(
@@ -101,10 +101,6 @@ const CreateAccount = () => {
     }, [formData, currentStep, formDataIsValid, validateInput, errors, canMoveToNextStep]);
 
 
-    const validateAliasUnique = (alias) => {
-        return alias === "unique" ? "This alias is already taken." : "";
-    }
-
     const next = () => {
         setFormData((prevData) =>
             Object.fromEntries(
@@ -114,7 +110,7 @@ const CreateAccount = () => {
                 ]),
             ),
         );
-        setFirstName(formData.firstName.value);
+        setFirstName(formData.first_name.value);
         setCurrentStep((step) => step + 1);
         setCanMoveToNextStep(formDataIsValid(formData, currentStep));
     };
@@ -164,13 +160,13 @@ const CreateAccount = () => {
                                 <Form.Control
                                     size="lg"
                                     type="text"
-                                    name="firstName"
-                                    value={formData.firstName.value}
+                                    name="first_name"
+                                    value={formData.first_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.firstName}
+                                    isInvalid={!!errors.first_name}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.firstName}
+                                    {errors.first_name}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
@@ -180,13 +176,13 @@ const CreateAccount = () => {
                                 <Form.Control
                                     size="lg"
                                     type="text"
-                                    name="lastName"
-                                    value={formData.lastName.value}
+                                    name="last_name"
+                                    value={formData.last_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.lastName}
+                                    isInvalid={!!errors.last_name}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.lastName}
+                                    {errors.last_name}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Col>
@@ -242,10 +238,10 @@ const CreateAccount = () => {
                                         <Form.Select
                                             size="lg"
                                             type="text"
-                                            name="gradYear"
-                                            value={formData.gradYear.value}
+                                            name="grad_year"
+                                            value={formData.grad_year.value}
                                             onChange={handleInputChange}
-                                            isInvalid={!!errors.gradYear}
+                                            isInvalid={!!errors.grad_year}
                                         >
                                             <option value={""}>Select...</option>
                                             {years.map((year) => (
@@ -255,7 +251,7 @@ const CreateAccount = () => {
                                             ))}
                                         </Form.Select>
                                         <Form.Control.Feedback type="invalid">
-                                            {errors.gradYear}
+                                            {errors.grad_year}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
@@ -267,9 +263,9 @@ const CreateAccount = () => {
                             <Form.Group controlId="formBasicMailingList">
                                 <Form.Check
                                     type="checkbox"
-                                    name="mailingList"
+                                    name="mailing_list"
                                     label="Sign me up for the WBAR mailing list"
-                                    checked={formData.mailingList.value}
+                                    checked={formData.mailing_list.value}
                                     onChange={handleInputChange}
                                 />
                             </Form.Group>
@@ -279,7 +275,7 @@ const CreateAccount = () => {
             ),
         },
         {
-            title: "Please choose an alias.",
+            title: "Please choose a DJ name.",
             content: (
                 <Form className="text-white">
                     <Row>
@@ -302,19 +298,19 @@ const CreateAccount = () => {
                             </div>
                         </Col>
                         <Col sm={12}>
-                            <Form.Group controlId="formBasicAlias">
-                                <Form.Label column={"sm"}>Alias</Form.Label>
+                            <Form.Group controlId="formBasicDjName">
+                                <Form.Label column={"sm"}>DJ name</Form.Label>
                                 <Form.Control
                                     size="lg"
                                     type="text"
-                                    name="alias"
-                                    value={formData.alias.value}
+                                    name="dj_name"
+                                    value={formData.dj_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.alias}
-                                    isValid={!(!!errors.alias) && formData.alias.allowValidation}
+                                    isInvalid={!!errors.dj_name}
+                                    isValid={!(!!errors.dj_name) && formData.dj_name.allowValidation}
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.alias}
+                                    {errors.dj_name}
                                 </Form.Control.Feedback>
                                 <Form.Control.Feedback type="valid">
                                     Looks good!
