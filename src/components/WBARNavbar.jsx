@@ -24,6 +24,7 @@ const WBARNavbar = () => {
                     <Nav className={'ms-auto'}>
                         <Nav.Link as={Link} to="/about">About</Nav.Link>
                         <Nav.Link as={Link} to="/events">Events</Nav.Link>
+                        <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

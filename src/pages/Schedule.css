@@ -1,6 +1,6 @@
 .outer-container {
   /*filter: grayscale(100%);*/
-  background-image:  url('../../public/background_tester.JPG'); /* Background image */
+  background-image:  url('background_tester.jpg'); /* Background image */
   margin-top: -20em;
   background-size: cover;
   background-attachment: fixed;

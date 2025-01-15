@@ -27,12 +27,12 @@
     "react-lazyload": "^3.2.0",
     "react-resizable": "^3.0.5",
     "react-router-dom": "^6.28.0",
-    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +53,9 @@
     ]
   },
   "devDependencies": {
-    "react-app-rewired": "^2.2.1"
-  }
+    "@vitejs/plugin-react": "^4.3.4",
+    "react-app-rewired": "^2.2.1",
+    "vite": "^6.0.7"
+  },
+  "type": "module"
 }
