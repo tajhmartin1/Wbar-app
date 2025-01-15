@@ -3,7 +3,7 @@ import {Form, Row, Col, Button, Container} from "react-bootstrap";
 import {ExclamationTriangle} from "react-bootstrap-icons";
 import "./CreateAccount.css";
 
-const CreateAccount = () => {
+const CreateAccount = ({token}) => {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
         first_name: {value: "", allowValidation: false},
@@ -123,18 +123,15 @@ const CreateAccount = () => {
 
     const submitForm = async () => {
         const newErrors = {};
-        const dataToSend = {};
+        const dataToSend = {}
         Object.entries(formData).forEach(([field, attributes]) => {
             const error = validateInput(
                 field,
                 typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
             );
 
-            dataToSend[field] = attributes.value;
-            if (attributes.value === "") {
-                delete dataToSend[field];
-            }
             if (error) newErrors[field] = error;
+            dataToSend[field] = attributes.value;
         });
 
         if (Object.keys(newErrors).length > 0) {
@@ -142,7 +139,18 @@ const CreateAccount = () => {
             return;
         }
 
-        console.log("Submitting form", dataToSend);
+
+        fetch("http://localhost:8000/user/me", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(dataToSend),
+        }).then((response) => response.json()).then((data) => {
+            console.log("got response",
+                data)
+        })
 
         console.log("Subscribing to mailing list");
     }
@@ -237,7 +245,7 @@ const CreateAccount = () => {
                                         <Form.Label column={"sm"}>Graduation Year</Form.Label>
                                         <Form.Select
                                             size="lg"
-                                            type="text"
+                                            type="number"
                                             name="grad_year"
                                             value={formData.grad_year.value}
                                             onChange={handleInputChange}
