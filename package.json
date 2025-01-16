@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "react-app-rewired": "^2.2.1",
     "vite": "^6.0.7"
   },
   "type": "module"
