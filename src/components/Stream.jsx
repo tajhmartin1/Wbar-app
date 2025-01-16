@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import './Stream.css';
 import {PlayCircleFill, StopCircleFill} from "react-bootstrap-icons";
+import Marquee from "react-fast-marquee";
 
 // import Waveform from './Waveform';
 
@@ -67,22 +68,30 @@ function Stream() {
     };
 
     return (
-        <div className={'d-flex justify-content-center'}>
-            <div id="stream-box">
-                <div className={'d-flex align-items-center'}>
-                    <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
-                           title="WBAR RADIO"></audio>
-                    <div className={'text-white'}>LIVE</div>
-                    <div className={"h3 text-white ps-3"} onClick={handleTogglePlayState}>
-                        {isPlaying ? <StopCircleFill/> : < PlayCircleFill className={"b3 text-white"}/>}
-                    </div>
-                    {/*<Waveform*/}
-                    {/*    isPlaying={isPlaying}*/}
-                    {/*    analyser={analyser.current}*/}
-                    {/*    color="#ff5722"*/}
-                    {/*/>*/}
-
+        <div className={'d-flex flex-column justify-content-center align-items-center'}>
+            <div id="stream-box" className={'d-flex align-items-center'}>
+                <div id={'stream-controller'} onClick={handleTogglePlayState}>
+                    {isPlaying ? <StopCircleFill/> : < PlayCircleFill/>}
                 </div>
+
+                <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
+                       title="WBAR RADIO"></audio>
+
+                {/*<Waveform*/}
+                {/*    isPlaying={isPlaying}*/}
+                {/*    analyser={analyser.current}*/}
+                {/*    color="#ff5722"*/}
+                {/*/>*/}
+            </div>
+            <div id={'ticker-container'}>
+                <Marquee id={'ticker'} gradient={false} play={isPlaying}>
+                    <div className="marquee-text">LIVE</div>
+                    <div className="marquee-text">•</div>
+                    <div className="marquee-text">WBAR</div>
+                    <div className="marquee-text">RADIO</div>
+                    <div className="marquee-text">•</div>
+
+                </Marquee>
             </div>
         </div>
     );

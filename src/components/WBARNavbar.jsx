@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const WBARNavbar = () => {
     return (
-        <Navbar sticky={"top"} style={{background:"none"}} expand="lg" variant={"dark"}>
+        <Navbar sticky={"top"} style={{background:"none"}} expand="xs" variant={"dark"}>
             <Container id={'navbar-container'}>
                 <Navbar.Brand as={Link} to="/">
                     <img
@@ -18,7 +18,7 @@ const WBARNavbar = () => {
                         style={{height: '40px' }}
                     />
                 </Navbar.Brand>
-                <Stream/>
+                <Stream />
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className={'ms-auto'}>

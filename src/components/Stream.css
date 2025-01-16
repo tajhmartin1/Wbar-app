@@ -1,7 +1,21 @@
 
 #stream-box i {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    margin: auto 0.5em;
 }
 
+#stream-controller{
+    font-size: 2em
+}
+
+.xs {
+    font-size: .5em;
+}
+#ticker-container {
+    width: 10em
+}
+
+.marquee-text {
+    padding-left: 7px
+}
