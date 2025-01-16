@@ -58,7 +58,7 @@ function App() {
                         }/>
                     </Routes>
                     <Link to={"/help"}>
-                        <div id={"link-to-form"} className={"d-flex flex-column justify-content-center"}>
+                        <div id={"link-to-form"} className={"d-flex flex-column justify-content-center align-items-center"}>
                             <QuestionCircleFill className="h1 text-white"/>
                             <div className={"h6"}>stream issues</div>
                         </div>
