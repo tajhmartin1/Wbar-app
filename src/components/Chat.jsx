@@ -207,7 +207,7 @@ function Chat() {
                     height: '10px',
                     cursor: 'ns-resize',
                     position: 'absolute',
-                    bottom: '0',
+                    bottom: '10px',
                     left: '0',
                 }}
             >
