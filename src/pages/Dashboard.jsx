@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import {Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import ShowManager from "./ShowManager.jsx";
+import ShowManager from "../components/ShowManager.jsx";
 
 export default function Dashboard({token}) {
     function copyToken() {

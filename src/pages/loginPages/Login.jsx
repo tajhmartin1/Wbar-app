@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import supabase from "../../supabaseClient";
 import {Link, useNavigate} from "react-router-dom";
 import {Container, Row, Col, Form, Button} from "react-bootstrap";
@@ -10,6 +10,26 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    const [session, setSession] = useState(null);
+
+    useEffect(() => {
+        const getSession = async () => {
+            const {
+                data: {session},
+            } = await supabase.auth.getSession();
+            setSession(session);
+        };
+
+        getSession();
+    }, []);
+
+    useEffect(() => {
+        if (session) {
+            navigate("/dashboard");
+        }
+    }, [session]);
+
+
 
     const handlePasswordSubmit = async (event) => {
         event.preventDefault();
