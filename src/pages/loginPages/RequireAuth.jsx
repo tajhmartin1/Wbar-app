@@ -3,7 +3,6 @@ import supabase from "../../supabaseClient";
 import { Navigate } from "react-router-dom";
 
 function RequireAuth({ children }) {
-    const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useState(null);
 
@@ -13,7 +12,6 @@ function RequireAuth({ children }) {
             const {
                 data: { session },
             } = await supabase.auth.getSession();
-            setAuthenticated(!!session);
             setToken(session?.access_token || null);
             setLoading(false);
         };
@@ -24,7 +22,7 @@ function RequireAuth({ children }) {
     if (loading) {
         return <div>Loading...</div>;
     } else {
-        if (authenticated) {
+        if (token) {
             return React.cloneElement(children, { token });
         }
         return <Navigate to="/login" />;

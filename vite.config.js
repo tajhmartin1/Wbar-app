@@ -9,7 +9,7 @@ export default defineConfig(() => {
         server: {
             port: 3000,
         },
-        publicDir: 'assets',
+        publicDir: 'public',
         plugins: [react()],
     };
 });

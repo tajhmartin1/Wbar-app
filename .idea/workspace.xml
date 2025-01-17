@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
-      <change beforePath="$PROJECT_DIR$/.idea/wbar-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wbar-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Stream.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
