@@ -15,7 +15,6 @@ const WBARNavbar = () => {
                         id={"wbar-logo"}
                         src={"wbar-title-v2.png"}
                         alt="WBAR logo"
-                        style={{height: '40px' }}
                     />
                 </Navbar.Brand>
                 <Stream />

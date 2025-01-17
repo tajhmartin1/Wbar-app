@@ -9,9 +9,17 @@
 .nav-link:hover {
   background-color: rgba(0,0,0,.1); /* Change the background color on hover */
 }
+.navbar-brand {
+  margin-right:0 !important;
+}
 
 #wbar-logo {
-  filter: contrast(140%) ; /* Invert the logo colors */
+  filter: contrast(140%) ;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: clamp(40px, 30vw, 120px);
+  height: auto;
 }
 
 #navbar-container {
