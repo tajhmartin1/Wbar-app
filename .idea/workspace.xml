@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
+      <change afterPath="$PROJECT_DIR$/src/pages/ShowManager.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -67,6 +68,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/client" />
     </key>
   </component>
