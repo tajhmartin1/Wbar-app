@@ -76,12 +76,6 @@ function Stream() {
 
                 <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
                        title="WBAR RADIO"></audio>
-
-                {/*<Waveform*/}
-                {/*    isPlaying={isPlaying}*/}
-                {/*    analyser={analyser.current}*/}
-                {/*    color="#ff5722"*/}
-                {/*/>*/}
             </div>
             <div id={'ticker-container'}>
                 <Marquee id={'ticker'} gradient={false} play={isPlaying}>

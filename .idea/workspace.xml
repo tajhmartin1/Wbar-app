@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
-      <change beforePath="$PROJECT_DIR$/src/components/Stream.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wbar-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wbar-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Stream.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -53,7 +52,7 @@
   "keyToString": {
     "Node.js.server.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "ava-branch",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ava/github/wbar-app",
     "node.js.detected.package.eslint": "true",
