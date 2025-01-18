@@ -3,8 +3,6 @@ import './Stream.css';
 import {PlayCircleFill, StopCircleFill} from "react-bootstrap-icons";
 import Marquee from "react-fast-marquee";
 
-// import Waveform from './Waveform';
-
 function Stream() {
     const audioRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -79,12 +77,11 @@ function Stream() {
             </div>
             <div id={'ticker-container'}>
                 <Marquee id={'ticker'} gradient={false} play={isPlaying}>
-                    <div className="marquee-text">LIVE</div>
                     <div className="marquee-text">•</div>
                     <div className="marquee-text">WBAR</div>
                     <div className="marquee-text">RADIO</div>
                     <div className="marquee-text">•</div>
-
+                    <div className="marquee-text">LIVE</div>
                 </Marquee>
             </div>
         </div>

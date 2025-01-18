@@ -11,10 +11,10 @@ import {DndContext, useDroppable} from "@dnd-kit/core";
 import FeedbackForm from "./pages/FeedbackForm";
 import Login from "./pages/loginPages/Login";
 import Dashboard from "./pages/Dashboard";
-import RequireAuth from "./pages/loginPages/RequireAuth";
 import Register from "./pages/loginPages/Register";
 import CreateAccount from "./pages/loginPages/CreateAccount";
 import {QuestionCircleFill} from "react-bootstrap-icons";
+import Protected from "./components/Protected.jsx";
 
 function App() {
     const {setNodeRef} = useDroppable({
@@ -34,7 +34,7 @@ function App() {
 
     return (
         <DndContext>
-            <div className="App">
+            <div className="App" data-bs-theme={"dark"}>
                 <WBARNavbar/>
                 <div ref={setNodeRef}>
                     <Routes>
@@ -45,17 +45,11 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/account/register" element={<Register/>}/>
 
-                        <Route path={"/account/new"} element={
-                            <RequireAuth>
-                                <CreateAccount/>
-                            </RequireAuth>
-                        }/>
+                        <Route element={<Protected/>}>
+                            <Route path="/dashboard" element={<Dashboard/>}/>
+                            <Route path="/account/new" element={<CreateAccount/>}/>
+                        </Route>
 
-                        <Route path="/dashboard" element={
-                            <RequireAuth>
-                                <Dashboard/>
-                            </RequireAuth>
-                        }/>
                     </Routes>
                     <Link to={"/help"}>
                         <div id={"link-to-form"} className={"d-flex flex-column justify-content-center align-items-center"}>

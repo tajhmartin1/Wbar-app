@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
-import supabase from "../../supabaseClient";
 import {Link, useNavigate} from "react-router-dom";
 import {Container, Row, Col, Form, Button} from "react-bootstrap";
 import "./Login.css"
 import GoogleButton from "./GoogleButton";
+import supabase from "../../helpers/supabase.js";
 
 function Login() {
     const navigate = useNavigate();

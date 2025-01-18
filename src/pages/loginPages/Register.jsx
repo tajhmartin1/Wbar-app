@@ -1,8 +1,8 @@
 import {useCallback, useEffect, useState} from "react";
-import supabase from "../../supabaseClient";
 import {useNavigate} from "react-router-dom";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import GoogleButton from "./GoogleButton";
+import supabase from "../../helpers/supabase.js";
 
 function Register() {
     const navigate = useNavigate();

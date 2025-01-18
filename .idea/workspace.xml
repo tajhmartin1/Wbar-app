@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
+      <change afterPath="$PROJECT_DIR$/src/components/Protected.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ShowManager.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/supabase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShowManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShowManager.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Stream.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ShowManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShowManager.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/supabaseClient.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +28,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JSX File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -55,6 +67,7 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ava/github/wbar-app",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -71,6 +84,9 @@
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/client" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/helpers/authenticated.js" />
     </key>
   </component>
   <component name="SharedIndexes">

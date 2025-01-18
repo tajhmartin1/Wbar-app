@@ -2,9 +2,13 @@ import Container from "react-bootstrap/Container";
 import {Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import ShowManager from "../components/ShowManager.jsx";
+import {doAuthenticatedAPIRequest, getToken} from "../helpers/supabase.js";
 
-export default function Dashboard({token}) {
-    function copyToken() {
+import "./Dashboard.css"
+
+export default function Dashboard() {
+    async function copyToken() {
+        const token = await getToken()
         navigator.clipboard.writeText(token);
     }
 
@@ -12,20 +16,12 @@ export default function Dashboard({token}) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const getUserRoles = async () => {
-            const roles = await fetch(
-                "http://localhost:8000/user/me/roles",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            ).then((res) => res.json());
-            setRoles(roles.map(role => role.role));
+        const roles = doAuthenticatedAPIRequest("/user/me/roles", "GET")
+        roles.then((response) => {
+            setRoles(response.map((role) => role.role))
             setLoading(false)
-        };
-        getUserRoles();
-    }, [token])
+        })
+    }, [])
 
     return (
         <Container>
@@ -40,7 +36,7 @@ export default function Dashboard({token}) {
                     ))}
                 </span>
             </div>
-            {roles.includes("executive_board") && <ShowManager token={token} />}
+            {roles.includes("executive_board") && <ShowManager/>}
         </Container>
     );
 }
