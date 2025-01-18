@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Routes, Route, Link, useLocation} from "react-r
 import About from './pages/About';
 import Events from './pages/Events';
 import Schedule from './pages/Schedule';
-import SparkleCursor from './SparkleCursor';
+import SparkleCursor from './components/SparkleCursor.jsx';
 import {DndContext, useDroppable} from "@dnd-kit/core";
 import FeedbackForm from "./pages/FeedbackForm";
 import Login from "./pages/loginPages/Login";
@@ -14,7 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/loginPages/Register";
 import CreateAccount from "./pages/loginPages/CreateAccount";
 import {QuestionCircleFill} from "react-bootstrap-icons";
-import Protected from "./components/Protected.jsx";
+import Protected from "./Protected.jsx";
 
 function App() {
     const {setNodeRef} = useDroppable({
