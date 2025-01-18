@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 html, body, .App {
-    font-family: "Newsreader", serif;
+    /*font-family: "Newsreader", serif;*/
+    font-family: "Inter", sans-serif;
     background-color: black;
     width: 100vw;
     height: 100vh;
-
     /* default text color = white. Easily overriden in other components */
     color: var(--bs-white);
+}
+
+#now-playing-section {
+    margin-top: -30em;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+    background-image:  url('background_tester.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10em 0 5em 0;
 }
 
 #link-to-form {
@@ -22,11 +34,6 @@ html, body, .App {
 
 #link-to-form:hover {
     color: #e0cde8 !important;
-}
-
-/* Disable scrolling for the home page */
-body.no-scroll {
-    overflow: hidden;
 }
 
 

@@ -1,0 +1,20 @@
+#now-playing {
+    margin-top: 22em;
+    background-color: rgba(14, 16, 16, 0.48);
+    padding: 2em;
+    margin-bottom:30em;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 5em;
+    font-weight:900;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 900;
+    text-transform: uppercase;
+}

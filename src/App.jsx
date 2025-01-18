@@ -15,6 +15,7 @@ import Register from "./pages/loginPages/Register";
 import CreateAccount from "./pages/loginPages/CreateAccount";
 import {QuestionCircleFill} from "react-bootstrap-icons";
 import Protected from "./Protected.jsx";
+import NowPlaying from "./pages/NowPlaying.jsx";
 
 function App() {
     const {setNodeRef} = useDroppable({
@@ -38,7 +39,17 @@ function App() {
                 <WBARNavbar/>
                 <div ref={setNodeRef}>
                     <Routes>
-                        <Route path="/" element={<Schedule/>}/>
+                        <Route path="/" element={
+                            <>
+                                <div id={"now-playing-section"}>
+                                    <NowPlaying/>
+                                </div>
+                                <div>
+                                    <Schedule/>
+                                </div>
+                            </>
+
+                        }/>
                         <Route path="/about" element={<About/>}/>
                         <Route path="/events" element={<Events/>}/>
                         <Route path="/help" element={<FeedbackForm/>}/>
@@ -52,7 +63,8 @@ function App() {
 
                     </Routes>
                     <Link to={"/help"}>
-                        <div id={"link-to-form"} className={"d-flex flex-column justify-content-center align-items-center"}>
+                        <div id={"link-to-form"}
+                             className={"d-flex flex-column justify-content-center align-items-center"}>
                             <QuestionCircleFill className="h1 text-white"/>
                             <div className={"h6"}>stream issues</div>
                         </div>

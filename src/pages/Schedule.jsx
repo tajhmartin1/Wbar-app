@@ -104,52 +104,10 @@ function ShowWithTime({time, show}) {
 }
 
 function Schedule() {
-    const [currentShow, setCurrentShow] = useState(null);
-    const [currentTimeSlot, setCurrentTimeSlot] = useState('');
-    const [currentDay, setCurrentDay] = useState('');
-    useEffect(() => {
-        const updateCurrentShow = () => {
-            const now = new Date();
-            const day = now.toLocaleString('en-US', {weekday: 'long', timeZone: 'America/New_York'});
-            const hours = now.toLocaleString('en-US', {hour: 'numeric', hour12: false, timeZone: 'America/New_York'});
-            let timeSlot = '';
-            if (hours >= 0 && hours < 2) timeSlot = '12AM-2AM';
-            else if (hours >= 2 && hours < 4) timeSlot = '2AM-4AM';
-            else if (hours >= 4 && hours < 6) timeSlot = '4AM-6AM';
-            else if (hours >= 6 && hours < 8) timeSlot = '6AM-8AM';
-            else if (hours >= 8 && hours < 10) timeSlot = '8AM-10AM';
-            else if (hours >= 10 && hours < 12) timeSlot = '10AM-12PM';
-            else if (hours >= 12 && hours < 14) timeSlot = '12PM-2PM';
-            else if (hours >= 14 && hours < 16) timeSlot = '2PM-4PM';
-            else if (hours >= 16 && hours < 18) timeSlot = '4PM-6PM';
-            else if (hours >= 18 && hours < 20) timeSlot = '6PM-8PM';
-            else if (hours >= 20 && hours < 22) timeSlot = '8PM-10PM';
-            else timeSlot = '10PM-12AM';
-            const show = schedule[day] && schedule[day][timeSlot];
-            setCurrentShow(show);
-            setCurrentTimeSlot(timeSlot);
-            setCurrentDay(day);
-        };
-        updateCurrentShow();
-        const intervalId = setInterval(updateCurrentShow, 60000);
-        return () => clearInterval(intervalId);
-    }, []);
+
     return (
         <div className="outer-container">
             <div className="schedule-container">
-                <h1 className="text-center mt-5">DJ Schedule</h1>
-                <div className="current-show">
-                    <h2>Currently Playing:</h2>
-                    <div>{currentDay ? <h3>{currentDay}</h3> : null}</div>
-                    {currentShow ? (
-                        <div className="show">
-                            <div className="show-name">{currentShow}</div>
-                            <div className="time">{currentTimeSlot}</div>
-                        </div>
-                    ) : (
-                        <p>No show currently playing</p>
-                    )}
-                </div>
                 <div className="row justify-content-center">
                     {Object.keys(schedule).map((day) => (
                         <div key={day} className="col-lg-3 col-md-4 col-sm-6 mb-4">

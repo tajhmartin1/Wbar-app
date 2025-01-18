@@ -15,5 +15,6 @@
 }
 
 .marquee-text {
-    padding-left: 7px
+    padding-left: 7px;
+    font-weight: 850;
 }

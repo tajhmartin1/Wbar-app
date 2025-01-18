@@ -1,9 +1,4 @@
 .outer-container {
-  /*filter: grayscale(100%);*/
-  background-image:  url('background_tester.jpg'); /* Background image */
-  margin-top: -20em;
-  background-size: cover;
-  background-attachment: fixed;
   min-height: 130vh; /* Ensure full height of the viewport */
   display: flex;
   justify-content: center;
@@ -19,8 +14,6 @@
   max-width: 1000px; /* Limit maximum width of the content box */
   overflow-y: auto; /* Allow scrolling for long content */
   height: 70vh; /* Set height for the container */
-  margin-top: 23em; /* Adjust margin to position higher */
-  margin-bottom: 0; /* Ensure no bottom margin */
 }
 /* Optional: Add media query for smaller screens */
 @media (max-width: 768px) {
@@ -41,9 +34,7 @@
 .schedule-container {
   -ms-overflow-style: none; /* Hide scrollbar */
 }
-h1 {
-  color: white;
-}
+
 .day {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
@@ -59,10 +50,10 @@ h1 {
   color: white;
 }
 .day-name {
-  font-weight: bold;
+  font-weight: 900;
   font-size: 25px;
   margin-bottom: 10px;
-  color: white;
+  text-transform: uppercase;
 }
 .show {
   padding: 10px 0;

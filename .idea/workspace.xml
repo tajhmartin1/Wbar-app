@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
-      <change afterPath="$PROJECT_DIR$/src/components/User.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/NowPlaying.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/NowPlaying.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ShowManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ScheduleManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Stream.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Schedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Schedule.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Schedule.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
