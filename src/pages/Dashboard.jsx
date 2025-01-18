@@ -41,7 +41,7 @@ export default function Dashboard() {
             </Row>
             <Row>
                 <Col sm={4}>
-                    <User/>
+                    <User roles={roles}/>
                 </Col>
             </Row>
             {roles.includes("executive_board") && <ScheduleManager/>}

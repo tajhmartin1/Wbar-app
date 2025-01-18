@@ -3,7 +3,11 @@ import {Image, Placeholder} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {doAuthenticatedAPIRequest} from "../helpers/supabase.js";
 
-export default function User() {
+function Pill({kind}) {
+    return <span className={`role ${kind}`}>{kind}</span>
+}
+
+export default function User({roles}) {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
     useEffect(() => {
@@ -14,19 +18,28 @@ export default function User() {
     }, []);
     return (
         <div id="user-box">
-            <div className={"d-flex justify-content-center"}>
-                <Image height={"50%"} width={"50%"} roundedCircle src={"maeve.jpg"}/>
+            <div className={"d-flex justify-content-start align-items-center gap-3"}>
+                <Image height={"80em"} width={"80em"} roundedCircle src={"maeve.jpg"}/>
+                <div>
+                    <div className={"d-flex fs-5 gap-1"}>
+                        {loading ?
+                            <Placeholder xs={4}/> :
+                            <span>{user.first_name}</span>
+                        }
+                        {loading ? <Placeholder xs={6}/> : <span>{user.last_name}</span>}
+                    </div>
+                    <div>alias</div>
+                    <div>
+                        {roles.map((role, i) => (
+                            <Pill key={i} kind={role}/>
+                        ))}
+                    </div>
+                </div>
             </div>
             <div>
-                <h4 className={"d-flex gap-1"}>
-                    {loading ?
-                        <Placeholder xs={6}/> :
-                        <span>{user.first_name}</span>
-                    }
-                    {loading ? <Placeholder xs={6}/> : <span>{user.last_name}</span>}
-                </h4>
-                <p>{loading ? "Loading..." : user.email}</p>
+                <p>{loading ? "Loading..." : user.joined_at}</p>
             </div>
         </div>
-    );
+    )
+        ;
 }
