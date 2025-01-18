@@ -1,0 +1,8 @@
+#user-box {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bs-dark-bg-subtle);
+    border: 1px solid var(--bs-dark-border-subtle);
+    padding: 1em 2em;
+    border-radius: .5em;
+}

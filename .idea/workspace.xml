@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
-      <change afterPath="$PROJECT_DIR$/src/components/Protected.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ShowManager.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/supabase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ShowManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShowManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Stream.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShowManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ScheduleManager.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/RequireAuth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/supabaseClient.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="CSS File" />
         <option value="JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -82,6 +73,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/client" />
     </key>

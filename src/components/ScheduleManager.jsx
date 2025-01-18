@@ -23,7 +23,7 @@ function Actions({
     </div>)
 }
 
-export default function ShowManager() {
+export default function ScheduleManager() {
     const [shows, setShows] = useState([{
         name: "The Morning Show", djEmail: "test@barnard.edu", showSlot: {day: "Mon", timeSlot: "8AM-10AM"},
     }]);
@@ -36,7 +36,7 @@ export default function ShowManager() {
 
     return (<Container id={"show-manager"} className={"shadow-lg"}>
         <div className='mb-2 d-flex justify-content-between'>
-            <h2>Manage shows</h2>
+            <h2>Manage schedule</h2>
             <Button id={"add-show"} size={"sm"} onClick={() => {
                 setIsEditing(true);
 
