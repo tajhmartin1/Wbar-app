@@ -114,7 +114,7 @@ function Schedule() {
         <Container className={"pb-4"}>
             <div className={"font-black text-7xl mt-10 mb-2 uppercase"}>Lineup</div>
             <div className={'max-w-fit overflow-x-scroll'}>
-                <table className={"table-fixed "}>
+                <table className={"table-fixed max-w-fit overflow-x-scroll"}>
                     <thead>
                     <tr>
                         <td className={"pb-6 pl-3 sticky left-0 bg-gradient-to-r from-black to-95%"}/>
