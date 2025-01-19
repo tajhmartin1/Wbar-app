@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './Schedule.css';
+import Container from "react-bootstrap/Container";
+import {Row, Col} from "react-bootstrap";
+
 const schedule = {
     Monday: {
         '12AM-2AM': 'Bootgaze',
@@ -94,11 +97,13 @@ const schedule = {
     }
 };
 
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const slots = ["12AM-2AM", "2AM-4AM", "6AM-8AM", "8AM-10AM", "10AM-12PM", "12PM-2PM", "2PM-4PM", "4PM-6PM", "6PM-8PM", "8PM-10PM", "10PM-12AM"];
+
 function ShowWithTime({time, show}) {
     return (
         <div className="show">
             <div className="show-name">{show}</div>
-            <div className="time">{time}</div>
         </div>
     );
 }
@@ -106,22 +111,31 @@ function ShowWithTime({time, show}) {
 function Schedule() {
 
     return (
-        <div className="outer-container">
-            <div className="schedule-container">
-                <div className="row justify-content-center">
-                    {Object.keys(schedule).map((day) => (
-                        <div key={day} className="col-lg-3 col-md-4 col-sm-6 mb-4">
-                            <div className="day-name text-center">{day}</div>
-                            <div className="schedule text-center">
-                                {Object.entries(schedule[day]).map(([time, show]) => (
-                                    <ShowWithTime key={time} time={time} show={show}/>
-                                ))}
-                            </div>
-                        </div>
+        <Container className={"pb-4"}>
+            <div className={"font-black text-7xl mt-10 mb-2 uppercase"}>Lineup</div>
+            <div className={'max-w-fit overflow-x-scroll'}>
+                <table className={"table-fixed "}>
+                    <thead>
+                    <tr>
+                        <td className={"pb-6 pl-3 sticky left-0 bg-gradient-to-r from-black to-95%"}/>
+                        {days.map(day => <th key={day} className={"font-black text-2xl uppercase pl-3"}>{day}</th>)}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {slots.map(slot => (
+                        <tr key={slot} className={"border-y"}>
+                            <td className={"font-black uppercase text-lg py-3 sticky left-0 bg-black"}>{slot}</td>
+                            {days.map(day => (
+                                <td key={day + slot} className={"text-sm font-medium pl-3"}>
+                                    {schedule[day][slot]}
+                                </td>
+                            ))}
+                        </tr>
                     ))}
-                </div>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </Container>
     );
 }
 

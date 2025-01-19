@@ -77,10 +77,10 @@ function Stream() {
             </div>
             <div id={'ticker-container'}>
                 <Marquee id={'ticker'} gradient={false} play={isPlaying}>
-                    <div className="marquee-text">•</div>
+                    <div className="marquee-text">★</div>
                     <div className="marquee-text">WBAR</div>
                     <div className="marquee-text">RADIO</div>
-                    <div className="marquee-text">•</div>
+                    <div className="marquee-text">★</div>
                     <div className="marquee-text">LIVE</div>
                 </Marquee>
             </div>

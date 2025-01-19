@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="show errors only if field has been modified">
-      <change afterPath="$PROJECT_DIR$/src/pages/NowPlaying.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/NowPlaying.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Stream.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Stream.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Schedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Schedule.css" afterDir="false" />
+    <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="can post new users from localhost">
       <change beforePath="$PROJECT_DIR$/src/pages/Schedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Schedule.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +51,7 @@
   "keyToString": {
     "Node.js.server.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "homepage",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/ava/github/wbar-app",
     "list.type.of.created.stylesheet": "CSS",
