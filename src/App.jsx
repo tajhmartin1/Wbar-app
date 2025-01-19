@@ -41,7 +41,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={
                             <>
-                                <div id={"now-playing-section"}>
+                                <div id={"now-playing-section"} className={"bg-[url('background_tester.jpg')] bg-cover -mt-96"}>
                                     <NowPlaying/>
                                 </div>
                                 <div>

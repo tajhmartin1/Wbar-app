@@ -12,14 +12,11 @@ html, body, .App {
 }
 
 #now-playing-section {
-    margin-top: -30em;
     display: flex;
     flex-direction: column-reverse;
     justify-content: end;
-    background-image:  url('background_tester.jpg');
-    background-size: cover;
-    background-attachment: fixed;
     padding: 10em 0 5em 0;
+
 }
 
 #link-to-form {

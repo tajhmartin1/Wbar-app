@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './Schedule.css';
+// import './Schedule.css';
 import Container from "react-bootstrap/Container";
 import {Row, Col} from "react-bootstrap";
 
@@ -112,7 +112,10 @@ function Schedule() {
 
     return (
         <Container className={"pb-4"}>
-            <div className={"font-black text-7xl mt-10 mb-2 uppercase"}>Lineup</div>
+            <div className={"mt-10 mb-4 uppercase flex justify-between items-baseline font-black"}>
+                <div className={"text-6xl md:text-7xl"}>Lineup</div>
+                {/*<div className={" text-2xl md:text-3xl opacity-40"}>Fall 2024</div>*/}
+            </div>
             <div className={'max-w-fit overflow-x-scroll'}>
                 <table className={"table-fixed max-w-fit overflow-x-scroll"}>
                     <thead>

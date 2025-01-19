@@ -1,6 +1,4 @@
-import "./NowPlaying.css"
 import {useEffect, useState} from "react";
-import {Container, Row, Col} from "react-bootstrap";
 
 export default function NowPlaying() {
     const [currentShow, setCurrentShow] = useState(null);
@@ -35,21 +33,25 @@ export default function NowPlaying() {
     }, []);
 
     return (
-        <Container >
-            <Row id={"now-playing"}>
-                <Col xs={12} md={5}>
-                    <h1>On Air</h1>
-                    <h2>Sun 2-4</h2>
-                </Col>
-                <Col xs={12} md={7}>
-                    <h2 className={"mt-3"}>Show name</h2>
-                    <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Ut sollicitudin curae curae netus
+        <div className={'container h-[88vh] flex flex-col justify-end'}>
+            <div className={'font-black text-3xl sm:text-4xl md:text-6xl mb-4 md:mb-10 uppercase'}>
+                <div>Barnard college's</div>
+                <div>freeform radio station</div>
+            </div>
+            <div className={'xs:flex-col sm:flex sm: lg:mb-20'}>
+                <div className={"mr-5 w-full uppercase"} >
+                    <div className={'font-black text-7xl md:text-8xl'}>On Air</div>
+                    <div className={'font-black text-3xl md:text-4xl'}>Sun 2-4</div>
+                </div>
+                <div className={'bg-gray-800 p-4 rounded bg-opacity-50'}>
+                    <div className={"font-black uppercase text-3xl"}>Show name</div>
+                    <p className={"max-h-40 overflow-scroll"}>Lorem ipsum odor amet, consectetuer adipiscing elit. Ut sollicitudin curae curae netus
                         scelerisque ipsum sit interdum. Sociosqu potenti congue urna porta vestibulum egestas suscipit
                         elit. Integer nisl netus congue aliquam laoreet. Porttitor ligula consequat consequat senectus,
                         euismod dapibus tellus. Sed amet felis molestie gravida urna sem, nam sollicitudin. Dapibus
                         vestibulum inceptos suscipit inceptos blandit augue.</p>
-                </Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+        </div>
     )
 }
