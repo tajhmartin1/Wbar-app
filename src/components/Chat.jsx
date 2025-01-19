@@ -1,8 +1,9 @@
 import React, {useEffect, useState, useRef} from 'react';
-import './Chat.css';
+// import './Chat.css';
 import {useDraggable} from '@dnd-kit/core';
 import {ChatFill, ChevronDown, X} from "react-bootstrap-icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
+
 function Chat() {
     const [isVisible, setIsVisible] = useState(false);
     const [deltaOffset, setDeltaOffset] = useState({x: 0, y: 0});
@@ -132,68 +133,81 @@ function Chat() {
     if (!isVisible) return (
         <button
             id={'show-chat-btn'}
-            className={'btn btn-dark btn-lg'}
+            className={'border rounded fixed bottom-10 right-10 p-2 bg-gray-800'}
             onClick={() => setIsVisible(!isVisible)}
         >
-            <ChatFill className={'h4 pe-1'}/> <span>Show chat</span>
+            Show chat
         </button>
     );
 
     return (
         <div
             id={"chat-container"}
+            className={'bg-white flex-col pt-4 pb-16 px-3 rounded fixed right-3 bottom-3 z-[3000]'}
             ref={setNodeRef}
             style={{...style, width: size.width, height: size.height}}
             onMouseUp={handleDragEnd}
             onTouchEnd={handleDragEnd}
         >
-            <div id={'chat-header'}>
-                <X
-                    id={'close-chat'}
-                    className={'bi bi-x h2'}
-                    onClick={() => {
-                        setFinalOffset({x: 0, y: 0});
-                        setIsMinimized(false);
-                        setIsVisible(false);
-                        setSize({width: 400, height: 600});
-                    }}
-                    title={'Close chat'}
-                ></X>
-                <i
-                    id={'chat-h-grip'}
-                    className="h2 bi bi-grip-horizontal"
-                    {...listeners}
-                    {...attributes}
-                ></i>
-                <ChevronDown id={"chat-to-margin"} className="h5 bi bi-chevron-down"
-                   onClick={isMinimized ? unMinimizeChat : minimizeChat}
-                   style={isMinimized ? {transform: 'rotate(180deg)'} : {}}
-                   title={isMinimized ? 'Maximize' : 'Minimize'}
-                ></ChevronDown>
+            <div id={'chat-header'} className={'flex justify-between items-center pb-1'}>
+                <div title={"close chat"}>
+                    <svg className="h-5 w-5 text-red-600"
+                         onClick={() => {
+                             setFinalOffset({x: 0, y: 0});
+                             setIsMinimized(false);
+                             setIsVisible(false);
+                             setSize({width: 400, height: 600});
+                         }}
+                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </div>
+                <div>
+                    <svg
+                        {...listeners}
+                        {...attributes}
+                        className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <circle cx="5" cy="9" r="1"/>
+                        <circle cx="5" cy="15" r="1"/>
+                        <circle cx="12" cy="9" r="1"/>
+                        <circle cx="12" cy="15" r="1"/>
+                        <circle cx="19" cy="9" r="1"/>
+                        <circle cx="19" cy="15" r="1"/>
+                    </svg>
+                </div>
+                <div title={isMinimized ? "minimize" : "maximize"}>
+                    <svg
+                        onClick={isMinimized ? unMinimizeChat : minimizeChat}
+                        style={isMinimized ? {transform: 'rotate(180deg)'} : {}}
+                        className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </div>
             </div>
-            <div id="chat-content" className=" w-100 h-100 d-flex flex-column justify-content-center">
+            <div id="chat-content" className="w-full h-full flex flex-col justify-center px-4 pt-2">
                 <div
                     ref={wResizeRef}
                     onMouseDown={handleMouseDownX}
                     onTouchStart={handleMouseDownX}
-                    className="d-flex flex-column justify-content-center chat-resize"
-                    style={{
-                        width: '10px',
-                        height: '100%',
-                        cursor: 'ew-resize',
-                        position: 'absolute',
-                        left: '0',
-                        top: '0',
-                    }}
+                    className="flex flex-col justify-center chat-resize h-full w-3 absolute left-0 top-0 cursor-ew-resize"
                 >
-                    <i className="bi bi-three-dots-vertical h5"></i>
+                    <svg className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>
+                        <circle cx="12" cy="12" r="1"/>
+                        <circle cx="12" cy="19" r="1"/>
+                        <circle cx="12" cy="5" r="1"/>
+                    </svg>
                 </div>
                 <iframe
                     title='chat'
                     src='https://minnit.chat/c/WBAR?embed&&nickname='
-                    style={{
-                        border: 'none', width: '100%', height: '100%', borderRadius: '8px 8px 0 0',
-                    }}
+                    className={'w-full h-full rounded'}
                 ></iframe>
             </div>
 
@@ -201,21 +215,16 @@ function Chat() {
                 ref={sResizeRef}
                 onMouseDown={handleMouseDownY}
                 onTouchStart={handleMouseDownY}
-                className="d-flex justify-content-center chat-resize"
-                style={{
-                    width: '100%',
-                    height: '10px',
-                    cursor: 'ns-resize',
-                    position: 'absolute',
-                    bottom: '10px',
-                    left: '0',
-                }}
+                className="w-full flex justify-center h-3 chat-resize absolute bottom-0 cursor-ns-resize"
             >
-                <i  className="bi bi-three-dots h5"></i>
+                <svg className="h-6 w-6 text-gray-700 absolute bottom-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <circle cx="5" cy="12" r="1"/>
+                    <circle cx="12" cy="12" r="1"/>
+                    <circle cx="19" cy="12" r="1"/>
+                </svg>
             </div>
-            <a href='https://minnit.chat/c/WBAR' target={'_blank'} rel={'noreferrer'} style={{marginTop: '10px'}}>
-                Open in new tab
-            </a>
         </div>
     );
 }

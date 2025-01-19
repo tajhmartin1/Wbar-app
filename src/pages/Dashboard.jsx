@@ -29,7 +29,7 @@ export default function Dashboard() {
             <Row>
                 <h1>Dashboard</h1>
                 <Button onClick={copyToken}>DEBUG: Copy Token</Button>
-                <div className={"d-flex gap-1"}>
+                <div className={"flex gap-1"}>
                     <span>Your authorization level:</span>
                     {loading && <span>Loading roles...</span>}
                     <span className="d-flex gap-1">

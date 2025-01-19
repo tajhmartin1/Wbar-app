@@ -1,7 +1,5 @@
 import React from 'react';
 import './events.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Add this line for Bootstrap JavaScript
 
 const nextImage = "streaming.png"
 const pastImage1 = "wbar-12.02.png"

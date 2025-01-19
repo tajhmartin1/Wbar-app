@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import './App.css';
 import WBARNavbar from './components/WBARNavbar';
 import Chat from './components/Chat';
 import {BrowserRouter as Router, Routes, Route, Link, useLocation} from "react-router-dom";
@@ -16,6 +15,7 @@ import CreateAccount from "./pages/loginPages/CreateAccount";
 import {QuestionCircleFill} from "react-bootstrap-icons";
 import Protected from "./Protected.jsx";
 import NowPlaying from "./pages/NowPlaying.jsx";
+import "./App.css"
 
 function App() {
     const {setNodeRef} = useDroppable({
@@ -35,7 +35,7 @@ function App() {
 
     return (
         <DndContext>
-            <div className="App" data-bs-theme={"dark"}>
+            <div className="App text-white bg-black" >
                 <WBARNavbar/>
                 <div ref={setNodeRef}>
                     <Routes>
@@ -60,15 +60,7 @@ function App() {
                             <Route path="/dashboard" element={<Dashboard/>}/>
                             <Route path="/account/new" element={<CreateAccount/>}/>
                         </Route>
-
                     </Routes>
-                    <Link to={"/help"}>
-                        <div id={"link-to-form"}
-                             className={"d-flex flex-column justify-content-center align-items-center"}>
-                            <QuestionCircleFill className="h1 text-white"/>
-                            <div className={"h6"}>stream issues</div>
-                        </div>
-                    </Link>
                 </div>
                 <Chat/>
                 <SparkleCursor/>

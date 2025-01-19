@@ -33,7 +33,7 @@ export default function NowPlaying() {
     }, []);
 
     return (
-        <div className={'container h-[88vh] flex flex-col justify-end'}>
+        <div className={'container mx-auto h-[88vh] flex flex-col justify-end'}>
             <div className={'font-black text-3xl sm:text-4xl md:text-6xl mb-4 md:mb-10 uppercase'}>
                 <div>Barnard college's</div>
                 <div>freeform radio station</div>
