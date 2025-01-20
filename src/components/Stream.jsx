@@ -66,16 +66,16 @@ function Stream() {
     };
 
     return (
-        <div className={'d-flex flex-column justify-content-center align-items-center'}>
-            <div id="stream-box" className={'d-flex align-items-center'}>
-                <div id={'stream-controller'} onClick={handleTogglePlayState}>
+        <div className={'flex flex-col gap-2 justify-content-center align-items-center'}>
+            <div className={'flex justify-center items-center'}>
+                <div className={'text-3xl'} onClick={handleTogglePlayState}>
                     {isPlaying ? <StopCircleFill/> : < PlayCircleFill/>}
                 </div>
 
                 <audio id="stream" ref={audioRef} src="https://audio.wbar.org:8443/stream"
                        title="WBAR RADIO"></audio>
             </div>
-            <div id={'ticker-container'}>
+            <div className={"md:w-32 w-20"}>
                 <Marquee id={'ticker'} gradient={false} play={isPlaying}>
                     <div className="marquee-text">★</div>
                     <div className="marquee-text">WBAR</div>

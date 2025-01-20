@@ -33,12 +33,12 @@ export default function NowPlaying() {
     }, []);
 
     return (
-        <div className={'container mx-auto h-[88vh] flex flex-col justify-end'}>
-            <div className={'font-black text-3xl sm:text-4xl md:text-6xl mb-4 md:mb-10 uppercase'}>
+        <div className={'container mx-auto min-h-[45em] flex flex-col justify-end px-5'}>
+            <div className={'font-black text-4xl sm:text-5xl md:text-6xl mb-5 sm:mb-10 md:mb-14 uppercase'}>
                 <div>Barnard college's</div>
                 <div>freeform radio station</div>
             </div>
-            <div className={'xs:flex-col sm:flex sm: lg:mb-20'}>
+            <div className={'xs:flex-col sm:flex mb-28'}>
                 <div className={"mr-5 w-full uppercase"} >
                     <div className={'font-black text-7xl md:text-8xl'}>On Air</div>
                     <div className={'font-black text-3xl md:text-4xl'}>Sun 2-4</div>

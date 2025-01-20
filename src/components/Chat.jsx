@@ -133,10 +133,15 @@ function Chat() {
     if (!isVisible) return (
         <button
             id={'show-chat-btn'}
-            className={'border rounded fixed bottom-10 right-10 p-2 bg-gray-800'}
+            className={'border font-black uppercase text-2xl flex gap-2 items-center rounded fixed bottom-10 right-10 p-2 bg-gray-800 z-[3000]'}
             onClick={() => setIsVisible(!isVisible)}
         >
-            Show chat
+            Chat
+            <svg className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
         </button>
     );
 
@@ -217,7 +222,8 @@ function Chat() {
                 onTouchStart={handleMouseDownY}
                 className="w-full flex justify-center h-3 chat-resize absolute bottom-0 cursor-ns-resize"
             >
-                <svg className="h-6 w-6 text-gray-700 absolute bottom-0" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                <svg className="h-6 w-6 text-gray-700 absolute bottom-0" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2"
                      stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z"/>
                     <circle cx="5" cy="12" r="1"/>

@@ -111,10 +111,9 @@ function ShowWithTime({time, show}) {
 function Schedule() {
 
     return (
-        <div className={"container mx-auto pb-4"}>
+        <div className={"container mx-auto pb-4 px-5"}>
             <div className={"mt-10 mb-4 uppercase flex justify-between items-baseline font-black"}>
                 <div className={"text-6xl md:text-7xl"}>Lineup</div>
-                {/*<div className={" text-2xl md:text-3xl opacity-40"}>Fall 2024</div>*/}
             </div>
             <div className={'max-w-fit overflow-x-scroll'}>
                 <table className={"table-fixed max-w-fit overflow-x-scroll"}>

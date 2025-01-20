@@ -15,7 +15,7 @@ import CreateAccount from "./pages/loginPages/CreateAccount";
 import {QuestionCircleFill} from "react-bootstrap-icons";
 import Protected from "./Protected.jsx";
 import NowPlaying from "./pages/NowPlaying.jsx";
-import "./App.css"
+// import "./App.css"
 
 function App() {
     const {setNodeRef} = useDroppable({
@@ -41,7 +41,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={
                             <>
-                                <div id={"now-playing-section"} className={"bg-[url('background_tester.jpg')] bg-cover -mt-96"}>
+                                <div className={"bg-[url('background_tester.jpg')] bg-cover"}>
                                     <NowPlaying/>
                                 </div>
                                 <div>
