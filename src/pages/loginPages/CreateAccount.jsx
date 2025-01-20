@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useCallback, useMemo} from "react";
-import {Form, Row, Col, Button, Container} from "react-bootstrap";
+import {Form, Button, Container} from "react-bootstrap";
 import {ExclamationTriangle} from "react-bootstrap-icons";
-import "./CreateAccount.css";
+// import "./CreateAccount.css";
 
 const CreateAccount = ({token}) => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -25,10 +25,10 @@ const CreateAccount = ({token}) => {
         return [
             {value: "", label: "Select..."},
             {value: "barnard", label: "Barnard"},
-            {value: "cc", label: "Columbia College"},
+            {value: "cc", label: "divumbia divlege"},
             {value: "seas", label: "SEAS"},
             {value: "gs", label: "General Studies"},
-            {value: "graduate_student", label: "Columbia graduate school"}
+            {value: "graduate_student", label: "divumbia graduate school"}
         ];
     }, []);
 
@@ -160,74 +160,61 @@ const CreateAccount = ({token}) => {
         {
             title: "Confirm personal information",
             content: (
-                <Form className="text-white">
-                    <Row>
-                        <Col sm={5}>
-                            <Form.Group controlId="formBasicFirstName">
-                                <Form.Label column={"sm"}>First Name</Form.Label>
-                                <Form.Control
-                                    size="lg"
+                <form className="text-white">
+                    <div>
+                        <div>
+                                <div className={'flex flex-col'}>
+                                <label htmlFor={'first_name'}>First Name</label>
+                                <input
+                                    className={"bg-gray-800 border rounded-lg"}
                                     type="text"
                                     name="first_name"
                                     value={formData.first_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.first_name}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.first_name}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Col>
-                        <Col sm={7}>
-                            <Form.Group controlId="formBasicLastName">
-                                <Form.Label column={"sm"}>Last Name</Form.Label>
-                                <Form.Control
+
+                            </div>
+                        </div>
+                        <div>
+                            <div controlId="formBasicLastName">
+                                <label htmlFor={'last_name'}>Last Name</label>
+                                <input
                                     size="lg"
                                     type="text"
                                     name="last_name"
                                     value={formData.last_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.last_name}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.last_name}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>
-                            <Form.Group>
-                                <Form.Label column={"sm"}>
-                                    Columbia affiliation
-                                </Form.Label>
-                                <Form.Select
-                                    size="lg"
-                                    type="text"
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <label htmlFor={'affiliation'} >
+                                   Columbia affiliation
+                                </label>
+                                <select
                                     name="affiliation"
                                     value={formData.affiliation.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.affiliation}
                                 >
                                     {affiliations.map((affiliation) => (
                                         <option key={affiliation.value} value={affiliation.value}>
                                             {affiliation.label}
                                         </option>
                                     ))}
-                                </Form.Select>
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.affiliation}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
                         {formData.affiliation.value !== "" && (
                             <>
-                                <Col xs={6}>
-                                    <Form.Group>
-                                        <Form.Label column={"sm"}>UNI</Form.Label>
-                                        <Form.Control
+                                <div xs={6}>
+                                    <div>
+                                        <label divumn={"sm"}>UNI</label>
+                                        <input
                                             size="lg"
                                             type="text"
                                             name="uni"
@@ -235,21 +222,15 @@ const CreateAccount = ({token}) => {
                                             onChange={handleInputChange}
                                             isInvalid={!!errors.uni}
                                         />
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.uni}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                </Col>
-                                <Col xs={6}>
-                                    <Form.Group>
-                                        <Form.Label column={"sm"}>Graduation Year</Form.Label>
-                                        <Form.Select
-                                            size="lg"
-                                            type="number"
+                                    </div>
+                                </div>
+                                <div xs={6}>
+                                    <div>
+                                        <label divumn={"sm"}>Graduation Year</label>
+                                        <select
                                             name="grad_year"
                                             value={formData.grad_year.value}
                                             onChange={handleInputChange}
-                                            isInvalid={!!errors.grad_year}
                                         >
                                             <option value={""}>Select...</option>
                                             {years.map((year) => (
@@ -257,18 +238,18 @@ const CreateAccount = ({token}) => {
                                                     {year}
                                                 </option>
                                             ))}
-                                        </Form.Select>
+                                        </select>
                                         <Form.Control.Feedback type="invalid">
                                             {errors.grad_year}
                                         </Form.Control.Feedback>
-                                    </Form.Group>
-                                </Col>
+                                    </div>
+                                </div>
                             </>
                         )}
-                    </Row>
-                    <Row>
-                        <Col className={'mt-4'} xs={12}>
-                            <Form.Group controlId="formBasicMailingList">
+                    </div>
+                    <div>
+                        <div className={'mt-4'}>
+                            <div >
                                 <Form.Check
                                     type="checkbox"
                                     name="mailing_list"
@@ -276,21 +257,21 @@ const CreateAccount = ({token}) => {
                                     checked={formData.mailing_list.value}
                                     onChange={handleInputChange}
                                 />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                </Form>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             ),
         },
         {
             title: "Please choose a DJ name.",
             content: (
-                <Form className="text-white">
-                    <Row>
-                        <Col sm={12} className="mb-3">
+                <form className="text-white">
+                    <div>
+                        <div className="mb-3">
                             <div id="warning-box" className="p-4 pb-2">
                                 <div>
-                                    <div className="h6 d-flex mx-auto gap-2 justify-items-start">
+                                    <div className="h6 flex mx-auto gap-2 justify-items-start">
                                         <ExclamationTriangle
                                             className="bi bi-exclamation-triangle"></ExclamationTriangle>
                                         <strong>Choose carefully!</strong>
@@ -304,70 +285,58 @@ const CreateAccount = ({token}) => {
                                     </ul>
                                 </div>
                             </div>
-                        </Col>
-                        <Col sm={12}>
-                            <Form.Group controlId="formBasicDjName">
-                                <Form.Label column={"sm"}>DJ name</Form.Label>
-                                <Form.Control
+                        </div>
+                        <div>
+                            <div >
+                                <label >DJ name</label>
+                                <input
                                     size="lg"
                                     type="text"
                                     name="dj_name"
                                     value={formData.dj_name.value}
                                     onChange={handleInputChange}
-                                    isInvalid={!!errors.dj_name}
-                                    isValid={!(!!errors.dj_name) && formData.dj_name.allowValidation}
                                 />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.dj_name}
-                                </Form.Control.Feedback>
-                                <Form.Control.Feedback type="valid">
-                                    Looks good!
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                </Form>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             ),
         }
     ];
 
 
     return (
-        <Container className="container mt-4 text-white">
-            <Row>
-                <Col xs={0} md={2}></Col>
-                <Col xs={12} md={8} className="align-self-center">
-                    <div className={"d-flex justify-content-between align-items-end"}>
+        <div className="container flex flex-col justify-center h-screen mx-auto max-w-screen-sm mt-4 text-white">
+            <div className={"px-10"}>
+                <div>
+                    <div className={"flex justify-between items-end border-b"}>
                         <h1>{firstName ? `Welcome, ${firstName}.` : "Hi there!"}</h1>
                         <div>
                             Step {currentStep + 1} of {steps.length}
                         </div>
                     </div>
                     <hr/>
-                    <h5 className={"mt-4"}>{steps[currentStep].title}</h5>
-                    <div className="steps-content">{steps[currentStep].content}</div>
-                    <hr/>
-                    <div className="steps-action mt-4 d-flex justify-content-between">
-                        <Button
+                    <h5 className={"mt-4 font-extrabold uppercase text-3xl"}>{steps[currentStep].title}</h5>
+                    <div className="steps-content border-b">{steps[currentStep].content}</div>
+                    <div className="steps-action mt-4 flex justify-between">
+                        <button
                             disabled={currentStep === 0}
                             style={{margin: "0 8px"}}
                             onClick={() => prev()}
                         >
                             Previous
-                        </Button>
+                        </button>
 
-                        <Button
-                            type="primary"
+                        <button
                             onClick={currentStep < steps.length - 1 ? next : submitForm}
                             disabled={!canMoveToNextStep}
                         >
                             {currentStep < steps.length - 1 ? "Next" : "Submit"}
-                        </Button>
+                        </button>
                     </div>
-                </Col>
-                <Col xs={0} md={2}></Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+        </div>
     );
 };
 

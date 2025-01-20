@@ -1,11 +1,7 @@
 import React from 'react';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-import './WBARNavbar.css';
 import Stream from './Stream';
 import {Link} from 'react-router-dom';
-import {useState, useRef} from "react";
+import { useRef} from "react";
 
 const WBARNavbar = () => {
     const navRef = useRef(null)
@@ -29,7 +25,7 @@ const WBARNavbar = () => {
                         <span className="sr-only">Open main menu</span>
                         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                              viewBox="0 0 17 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                   d="M1 1h15M1 7h15M1 13h15"/>
                         </svg>
                     </button>
@@ -49,6 +45,11 @@ const WBARNavbar = () => {
                         <li>
                             <Link to={"/events"}
                                   className="text-2xl block py-2 px-3 font-black uppercase hover:underline">Events</Link>
+                        </li>
+                        <li className={'border-t pt-3'}>
+                            <Link className={'flex flex-col gap-2 items-baseline'} to={"/login"}>
+                                <button className="ml-2 hover:bg-purple-100 bg-opacity-15 hover:text-purple-500 border rounded-xl text-2xl py-2 px-3 font-black uppercase">Login</button> <div className={' font-medium'}>^ DJs, STAFF, E-BOARD</div>
+                            </Link>
                         </li>
                     </ul>
                 </div>

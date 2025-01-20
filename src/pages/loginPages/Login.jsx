@@ -1,9 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {Container, Row, Col, Form, Button} from "react-bootstrap";
-import "./Login.css"
 import GoogleButton from "./GoogleButton";
-import supabase from "../../helpers/supabase.js";
+import {supabase} from "../../helpers/supabase.js";
 
 function Login() {
     const navigate = useNavigate();
@@ -30,12 +28,11 @@ function Login() {
     }, [session]);
 
 
-
     const handlePasswordSubmit = async (event) => {
         event.preventDefault();
         setMessage("");
 
-        const {data, error} = await supabase.auth.signInWithPassword({
+        const {data: {user}, error} = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         });
@@ -47,72 +44,61 @@ function Login() {
             return;
         }
 
-        if (data) {
+        if (user) {
             navigate("/dashboard");
             return null;
         }
+        setMessage("An error occurred. Please try again.");
+        return null;
     };
 
-
     return (
-        <Container className={"mt-5"}>
-            <Row className="mt-4">
-                <Col xs={1} md={3}/>
-                <Col xs={10} md={6}>
-                    <Row>
-                        <h1>Log in to WBAR Radio</h1>
-                    </Row>
-                    <Row>
-                        <Col>
-                            {message && <span className={"text-danger p-1 d-flex justify-content-start gap-1"}><i
-                                className={"bi-exclamation-circle"}/><span>{message}</span></span>}
+        <div className={"container flex flex-col justify-center items-center mx-auto h-screen w-screen bg-black"}>
+            <div className={"flex flex-col max-w-96"}>
 
-                            <Form>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label column="sm">Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email"/>
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Label column={"sm"}>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password"/>
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                    <Form.Check type="checkbox" label="Remember me"/>
-                                </Form.Group>
-                            </Form>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button className="w-100" color={"secondary"} onClick={handlePasswordSubmit}>
-                                Submit
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row className="my-2">
-                        <Col>
-                            <h5 className={"divider mt-4"}>
-                                <span>OR</span>
-                            </h5>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <GoogleButton/>
-                        </Col>
-                    </Row>
-                    <Row className={"mt-4"}>
-                        <Col className={"d-flex gap-2"}>
-                            <span className={'text-white'}>Don't have an account?</span>
-                            <Link to="/account/register">Register.</Link>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col xs={1} md={3}/>
-            </Row>
-
-        </Container>
-
+                <h1 className={"font-black uppercase text-5xl"}>
+                    <div>Log in to</div>
+                    <div>WBAR Radio</div>
+                </h1>
+                {message &&
+                    <div className={'flex items-center gap-1 text-red-600 motion-preset-slide-down'}>
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div>{message}</div>
+                    </div>}
+                <form onSubmit={handlePasswordSubmit}>
+                    <div className={"flex flex-col"}>
+                        <input
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            type="email"
+                            placeholder="Email"
+                            required
+                            className={"p-2 my-2 rounded-lg text-black"}
+                        />
+                        <input
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            type="password"
+                            placeholder="Password"
+                            required
+                            className={"p-2 my-2 rounded-lg text-black"}
+                        />
+                        <button type="submit" className={"p-2 my-2 bg-purple-900 text-white rounded-lg"}>
+                            Log in
+                        </button>
+                    </div>
+                </form>
+                <h4 className="relative pt-2 pb-4 flex items-center justify-center">
+                    <span className="flex-1 border-b-2 border-white"></span>
+                    <span className="mx-2 font-medium uppercase">or</span>
+                    <span className="flex-1 border-b-2 border-white"></span>
+                </h4>
+                <GoogleButton/>
+            </div>
+        </div>
     );
 }
 

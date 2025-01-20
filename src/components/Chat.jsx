@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 // import './Chat.css';
 import {useDraggable} from '@dnd-kit/core';
-import {ChatFill, ChevronDown, X} from "react-bootstrap-icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Chat() {
@@ -138,7 +137,7 @@ function Chat() {
         >
             Chat
             <svg className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                 strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path
                     d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
@@ -163,8 +162,8 @@ function Chat() {
                              setIsVisible(false);
                              setSize({width: 400, height: 600});
                          }}
-                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                         width="24" height="24" viewBox="0 0 24 24" strokeWidth="2"
+                         stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z"/>
                         <line x1="18" y1="6" x2="6" y2="18"/>
                         <line x1="6" y1="6" x2="18" y2="18"/>
@@ -174,8 +173,8 @@ function Chat() {
                     <svg
                         {...listeners}
                         {...attributes}
-                        className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2"
+                        stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z"/>
                         <circle cx="5" cy="9" r="1"/>
                         <circle cx="5" cy="15" r="1"/>
@@ -190,7 +189,7 @@ function Chat() {
                         onClick={isMinimized ? unMinimizeChat : minimizeChat}
                         style={isMinimized ? {transform: 'rotate(180deg)'} : {}}
                         className="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </div>
             </div>
@@ -201,8 +200,8 @@ function Chat() {
                     onTouchStart={handleMouseDownX}
                     className="flex flex-col justify-center chat-resize h-full w-3 absolute left-0 top-0 cursor-ew-resize"
                 >
-                    <svg className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg className="h-6 w-6 text-gray-700" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2"
+                         stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z"/>
                         <circle cx="12" cy="12" r="1"/>
                         <circle cx="12" cy="19" r="1"/>
@@ -223,8 +222,8 @@ function Chat() {
                 className="w-full flex justify-center h-3 chat-resize absolute bottom-0 cursor-ns-resize"
             >
                 <svg className="h-6 w-6 text-gray-700 absolute bottom-0" width="24" height="24" viewBox="0 0 24 24"
-                     stroke-width="2"
-                     stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                     strokeWidth="2"
+                     stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z"/>
                     <circle cx="5" cy="12" r="1"/>
                     <circle cx="12" cy="12" r="1"/>

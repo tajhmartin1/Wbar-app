@@ -3,11 +3,14 @@ import {Button, Row, Col} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import ScheduleManager from "../components/ScheduleManager.jsx";
 import {doAuthenticatedAPIRequest, getToken} from "../helpers/supabase.js";
+import {useNavigate} from "react-router-dom";
 
 import "./Dashboard.css"
 import User from "../components/User.jsx";
 
 export default function Dashboard() {
+    const navigate = useNavigate()
+
     async function copyToken() {
         const token = await getToken()
         navigator.clipboard.writeText(token);
@@ -15,6 +18,22 @@ export default function Dashboard() {
 
     const [roles, setRoles] = useState([])
     const [loading, setLoading] = useState(true)
+    const [userToken, setUserToken] = useState(null)
+
+
+    useEffect( () => {
+        async function  fetchToken() {
+            const token = await getToken()
+            setUserToken(token)
+
+            if (!token) {
+                navigate("/login")
+            }
+        }
+        const token = fetchToken()
+
+        setUserToken(token)
+    }, [])
 
     useEffect(() => {
         const roles = doAuthenticatedAPIRequest("/user/me/roles", "GET")
@@ -24,7 +43,7 @@ export default function Dashboard() {
         })
     }, [])
 
-    return (
+    return userToken && (
         <Container>
             <Row>
                 <h1>Dashboard</h1>
@@ -46,5 +65,6 @@ export default function Dashboard() {
             </Row>
             {roles.includes("executive_board") && <ScheduleManager/>}
         </Container>
-    );
+    )
+        ;
 }

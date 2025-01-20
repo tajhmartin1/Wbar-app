@@ -1,15 +1,14 @@
-import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import supabase from "../../helpers/supabase.js";
+import {supabase} from "../../helpers/supabase.js";
+import {useEffect} from "react";
 
 export default function GoogleButton() {
     const navigate = useNavigate();
+
     const handleGoogleSubmit = async (event) => {
         event.preventDefault();
-
         const {user, session, error} = await supabase.auth.signInWithOAuth({
-            provider: "google",
-            options: {
+            provider: "google", options: {
                 redirectTo: 'http://localhost:3000/dashboard'
             }
         });
@@ -20,10 +19,8 @@ export default function GoogleButton() {
             return null;
         }
     }
-    return (
-        <Button
-            className="w-100 d-flex justify-content-center align-items-center gap-2"
-            variant={"light"}
+    return (<button
+            className="w-full flex bg-gray-50 hover:bg-gray-200 justify-center items-center gap-2 py-2 text-gray-800 rounded-xl"
             onClick={handleGoogleSubmit}
         >
             <img
@@ -33,6 +30,5 @@ export default function GoogleButton() {
                 alt="google icon"
             />
             <span>Sign in with Google</span>
-        </Button>
-    )
+        </button>)
 }

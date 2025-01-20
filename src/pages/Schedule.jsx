@@ -100,18 +100,10 @@ const schedule = {
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const slots = ["12AM-2AM", "2AM-4AM", "6AM-8AM", "8AM-10AM", "10AM-12PM", "12PM-2PM", "2PM-4PM", "4PM-6PM", "6PM-8PM", "8PM-10PM", "10PM-12AM"];
 
-function ShowWithTime({time, show}) {
-    return (
-        <div className="show">
-            <div className="show-name">{show}</div>
-        </div>
-    );
-}
-
 function Schedule() {
 
     return (
-        <div className={"container mx-auto pb-4 px-5"}>
+        <div className={"container mx-auto pb-10 px-5"}>
             <div className={"mt-10 mb-4 uppercase flex justify-between items-baseline font-black"}>
                 <div className={"text-6xl md:text-7xl"}>Lineup</div>
             </div>
@@ -119,14 +111,14 @@ function Schedule() {
                 <table className={"table-fixed max-w-fit overflow-x-scroll"}>
                     <thead>
                     <tr>
-                        <td className={"pb-6 pl-3 sticky left-0 bg-gradient-to-r from-black to-95%"}/>
+                        <td className={"pb-6 pl-3 sticky left-0 bg-gradient-to-r from-black to-95% border-r"}/>
                         {days.map(day => <th key={day} className={"font-black text-2xl uppercase pl-3"}>{day}</th>)}
                     </tr>
                     </thead>
                     <tbody>
                     {slots.map(slot => (
                         <tr key={slot} className={"border-y"}>
-                            <td className={"font-black uppercase text-lg py-3 sticky left-0 bg-black"}>{slot}</td>
+                            <td className={"font-black text-purple-200 uppercase text-lg py-3 pr-1 sticky left-0 bg-black border-r"}>{slot}</td>
                             {days.map(day => (
                                 <td key={day + slot} className={"text-sm font-medium pl-3"}>
                                     {schedule[day][slot]}
