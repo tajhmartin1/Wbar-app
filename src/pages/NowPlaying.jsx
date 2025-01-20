@@ -41,7 +41,7 @@ export default function NowPlaying() {
             <div className={'xs:flex-col sm:flex mb-28'}>
                 <div className={"mr-5 w-full uppercase"} >
                     <div className={'font-black text-7xl md:text-8xl'}>On Air</div>
-                    <div className={'font-black text-3xl md:text-4xl'}>Sun 2-4</div>
+                    <div className={'font-black text-3xl opacity-95 md:text-4xl'}>Sun 2-4</div>
                 </div>
                 <div className={'bg-gray-800 p-4 rounded bg-opacity-50'}>
                     <div className={"font-black uppercase text-3xl"}>Show name</div>
