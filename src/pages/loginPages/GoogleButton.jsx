@@ -7,14 +7,13 @@ export default function GoogleButton() {
 
     const handleGoogleSubmit = async (event) => {
         event.preventDefault();
-        const {user, session, error} = await supabase.auth.signInWithOAuth({
+        const {user, error} = await supabase.auth.signInWithOAuth({
             provider: "google", options: {
-                redirectTo: 'http://localhost:3000/dashboard'
+                redirectTo: window.location.origin + "/dashboard"
             }
         });
 
-        console.log(session)
-        if (session) {
+        if (user) {
             navigate("/dashboard");
             return null;
         }

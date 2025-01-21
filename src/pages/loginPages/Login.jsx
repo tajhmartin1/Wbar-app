@@ -1,31 +1,23 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import GoogleButton from "./GoogleButton";
 import {supabase} from "../../helpers/supabase.js";
+import {useAuth} from "../../Auth.jsx";
 
 function Login() {
+
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
-    const [session, setSession] = useState(null);
+    const {session, user, signOut} = useAuth();
 
     useEffect(() => {
-        const getSession = async () => {
-            const {
-                data: {session},
-            } = await supabase.auth.getSession();
-            setSession(session);
-        };
-
-        getSession();
-    }, []);
-
-    useEffect(() => {
+        console.log(session)
         if (session) {
             navigate("/dashboard");
         }
-    }, [session]);
+    }, []);
 
 
     const handlePasswordSubmit = async (event) => {
@@ -39,8 +31,6 @@ function Login() {
 
         if (error) {
             setMessage(error.message);
-            setEmail("");
-            setPassword("");
             return;
         }
 
@@ -53,9 +43,8 @@ function Login() {
     };
 
     return (
-        <div className={"container flex flex-col justify-center items-center mx-auto h-screen w-screen bg-black"}>
+        <div className={"container flex flex-col justify-center items-center mx-auto h-screen w-screen bg-black pt-nav"}>
             <div className={"flex flex-col max-w-96"}>
-
                 <h1 className={"font-black uppercase text-5xl"}>
                     <div>Log in to</div>
                     <div>WBAR Radio</div>
@@ -97,6 +86,7 @@ function Login() {
                     <span className="flex-1 border-b-2 border-white"></span>
                 </h4>
                 <GoogleButton/>
+                <div className={'mt-3 w-full text-center text-sm'}>Don't have an account? <Link className={'text-blue-500 hover:underline'} to={'/account/register'}>Register</Link>.</div>
             </div>
         </div>
     );

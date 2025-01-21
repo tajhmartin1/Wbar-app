@@ -3,7 +3,7 @@ import {Form, Button, Container} from "react-bootstrap";
 import {ExclamationTriangle} from "react-bootstrap-icons";
 // import "./CreateAccount.css";
 
-const CreateAccount = ({token}) => {
+const CreateAccount = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState({
         first_name: {value: "", allowValidation: false},
@@ -17,7 +17,6 @@ const CreateAccount = ({token}) => {
 
 
     const [canMoveToNextStep, setCanMoveToNextStep] = useState(false);
-
     const currentYear = new Date().getFullYear();
     const years = Array.from({length: 6}, (_, i) => currentYear - 1 + i);
 

@@ -5,15 +5,7 @@ const supabaseUrl = "https://xhftgtthhrkntibtulbl.supabase.co";
 const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhoZnRndHRoaHJrbnRpYnR1bGJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyODYyMTYsImV4cCI6MjA1MTg2MjIxNn0.J8tv0W3KHwdxJjx0YAtMjXWkDuVtHkVslfMpVPH4s0A";
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export const getToken = async () => {
-    const {
-        data: {session},
-    } = await supabase.auth.getSession();
-    return session?.access_token || null;
-};
-
-export async function doAuthenticatedAPIRequest (path, method, options) {
-    const token = await getToken();
+export async function doAuthenticatedAPIRequest(path, method, token, options) {
     if (!token) {
         throw new Error("No token available");
     }
@@ -30,4 +22,4 @@ export async function doAuthenticatedAPIRequest (path, method, options) {
     }).then((res) => res.json());
 };
 
-export default {supabase, getToken, doAuthenticatedAPIRequest};
+export default {supabase, doAuthenticatedAPIRequest};

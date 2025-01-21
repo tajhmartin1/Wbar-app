@@ -131,7 +131,7 @@ function Chat() {
 
     if (!isVisible) return (<button
         id={'show-chat-btn'}
-        className={'border font-black uppercase text-2xl flex gap-2 items-center rounded fixed bottom-10 right-10 p-2 bg-gray-800 z-[3000]'}
+        className={'border font-black uppercase text-2xl flex gap-2 items-center rounded fixed bottom-5 right-5 p-2 bg-gray-800 z-[3000]'}
         onClick={() => {
             setLoading(true);
             setIsVisible(!isVisible)

@@ -1,17 +1,18 @@
 import "./User.css"
 import {Image, Placeholder} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import {doAuthenticatedAPIRequest} from "../helpers/supabase.js";
-
+import {useAuth} from "../Auth.jsx";
 function Pill({kind}) {
     return <span className={`role ${kind}`}>{kind}</span>
 }
 
 export default function User({roles}) {
-    const [user, setUser] = useState({})
+    const {session, user, signOut} = useAuth();
+    const token = session?.access_token;
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        doAuthenticatedAPIRequest("/user/me", "GET").then((response) => {
+        doAuthenticatedAPIRequest("/user/me", "GET", token).then((response) => {
             setUser(response.data[0])
             setLoading(false)
         })

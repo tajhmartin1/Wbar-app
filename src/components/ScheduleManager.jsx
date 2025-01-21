@@ -1,10 +1,6 @@
-import Table from 'react-bootstrap/Table';
-import {Button} from "react-bootstrap";
-import {Plus, Eye, Trash3, PencilSquare} from "react-bootstrap-icons";
+import { Trash3, PencilSquare} from "react-bootstrap-icons";
 import {useState, useEffect, useRef} from "react";
-import {Form, Container} from "react-bootstrap";
-// import "./ShowManager.css"
-import {doAuthenticatedAPIRequest, getToken} from "../helpers/supabase.js";
+import {Form} from "react-bootstrap";
 
 function deleteShow(id) {
     console.log("deleting show", id)

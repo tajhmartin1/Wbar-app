@@ -12,7 +12,7 @@ const WBARNavbar = () => {
     return (
         <nav
             className="fixed w-full z-20 top-0 start-0 px-2">
-            <div className=" bg-purple-900 bg-opacity-55 backdrop-blur-xl m-5 max-w-screen-xl flex flex-wrap items-center justify-between px-4 mx-auto rounded-2xl transition-all duration-700 ease-in-out">
+            <div className="bg-purple-900 bg-opacity-55 backdrop-blur-xl m-5 max-w-screen-xl flex flex-wrap items-center justify-between px-4 mx-auto rounded-2xl transition-all duration-700 ease-in-out">
                 <Link to="/" >
                     <img src="wbar.png" className="w-28" alt="WBAR Logo"/>
                 </Link>

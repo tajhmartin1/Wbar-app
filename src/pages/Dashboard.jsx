@@ -1,50 +1,39 @@
 import Container from "react-bootstrap/Container";
 import {Button, Row, Col} from "react-bootstrap";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import ScheduleManager from "../components/ScheduleManager.jsx";
-import {doAuthenticatedAPIRequest, getToken} from "../helpers/supabase.js";
-import {useNavigate} from "react-router-dom";
+import {doAuthenticatedAPIRequest} from "../helpers/supabase.js";
+import {useAuth} from "../Auth.jsx";
 
 import "./Dashboard.css"
 import User from "../components/User.jsx";
 
 export default function Dashboard() {
-    const navigate = useNavigate()
+    const {session, user, signOut} = useAuth()
+    const token = session?.access_token;
 
     async function copyToken() {
-        const token = await getToken()
         navigator.clipboard.writeText(token);
     }
 
     const [roles, setRoles] = useState([])
     const [loading, setLoading] = useState(true)
-    const [userToken, setUserToken] = useState(null)
 
-
-    useEffect( () => {
-        async function  fetchToken() {
-            const token = await getToken()
-            setUserToken(token)
-
-            if (!token) {
-                navigate("/login")
-            }
-        }
-        const token = fetchToken()
-
-        setUserToken(token)
-    }, [])
 
     useEffect(() => {
-        const roles = doAuthenticatedAPIRequest("/user/me/roles", "GET")
-        roles.then((response) => {
-            setRoles(response.map((role) => role.role))
-            setLoading(false)
-        })
+        console.log("session:", session)
+        console.log("token:", token)
+
+        if (token) {
+            const roles = doAuthenticatedAPIRequest("/user/me/roles", "GET", token)
+            roles.then((response) => {
+                setRoles(response.map((role) => role.role))
+                setLoading(false)
+            })
+        }
     }, [])
 
-    return userToken && (
-        <Container>
+    return token && (<Container>
             <Row>
                 <h1>Dashboard</h1>
                 <Button onClick={copyToken}>DEBUG: Copy Token</Button>
@@ -52,9 +41,7 @@ export default function Dashboard() {
                     <span>Your authorization level:</span>
                     {loading && <span>Loading roles...</span>}
                     <span className="d-flex gap-1">
-                    {roles.map((role, i) => (
-                        <span key={i}>{role}</span>
-                    ))}
+                    {roles.map((role, i) => (<span key={i}>{role}</span>))}
                 </span>
                 </div>
             </Row>
@@ -64,7 +51,5 @@ export default function Dashboard() {
                 </Col>
             </Row>
             {roles.includes("executive_board") && <ScheduleManager/>}
-        </Container>
-    )
-        ;
+        </Container>);
 }
