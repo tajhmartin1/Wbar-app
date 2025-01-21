@@ -9,7 +9,7 @@ const Protected = () => {
 
     useEffect(() => {
         const token = session?.access_token;
-        console.log(session)
+        // console.log(session)
         if (!token) {
             navigate("/login", {state: {initialMessage: "You must log in to view that page."}});
         }

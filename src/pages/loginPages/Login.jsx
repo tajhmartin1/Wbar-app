@@ -1,15 +1,15 @@
 import {useContext, useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import GoogleButton from "./GoogleButton";
 import {supabase} from "../../helpers/supabase.js";
 import {useAuth} from "../../Auth.jsx";
 
 function Login() {
-
+    const initialMessage = useLocation().state?.initialMessage;
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState(!initialMessage && "");
     const {session, user, signOut} = useAuth();
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function Login() {
         }
 
         if (user) {
-            navigate("/dashboard");
+            navigate("/account/new");
             return null;
         }
         setMessage("An error occurred. Please try again.");

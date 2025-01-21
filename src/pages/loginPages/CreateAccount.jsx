@@ -1,342 +1,152 @@
 import React, {useEffect, useState, useCallback, useMemo} from "react";
-import {Form, Button, Container} from "react-bootstrap";
-import {ExclamationTriangle} from "react-bootstrap-icons";
-// import "./CreateAccount.css";
+import {Formik, Form, Field} from "formik";
+import * as Yup from "yup";
+import {ErrorFeedback} from "./ErrorFeedback.jsx";
+import {useAuth} from "../../Auth.jsx";
+import {Link, useNavigate} from "react-router-dom";
+import {doAuthenticatedAPIRequest} from "../../helpers/supabase.js";
+
+const LabeledField = ({label, name, type = "text", placeholder, errors, touched, children}) => (
+    <div className={"flex flex-col gap-1 mb-3 w-full"}>
+        <label htmlFor={name} className={"text-white"}>{label}</label>
+        {type === "select" ? (
+            <Field as="select" className={'rounded-lg w-full'} name={name} placeholder={placeholder}>
+                {children}
+            </Field>
+        ) : (
+            <Field className={'rounded-lg w-full'} name={name} type={type} placeholder={placeholder}/>
+        )}
+        {errors[name] && touched[name] && <ErrorFeedback message={errors[name]}/>}
+    </div>
+);
 
 const CreateAccount = () => {
+    const years = Array.from({length: 6}, (_, i) => new Date().getFullYear() - 1 + i);
+    const affiliations = [
+        {affiliation: "barnard", label: "Barnard"}, {
+            affiliation: "cc",
+            label: "Columbia College"
+        }, {affiliation: "seas", label: "SEAS"}, {
+            affiliation: "gs",
+            label: "General Studies"
+        }, {affiliation: "graduate_school", label: "Other Columbia school"}];
+
+    const {sessionEmail, session, signOut} = useAuth();
+    const token = session?.access_token;
+
+    const navigate = useNavigate()
+
     const [currentStep, setCurrentStep] = useState(0);
-    const [formData, setFormData] = useState({
-        first_name: {value: "", allowValidation: false},
-        last_name: {value: "", allowValidation: false},
-        uni: {value: "", allowValidation: false},
-        affiliation: {value: "", allowValidation: false},
-        dj_name: {value: "", allowValidation: false},
-        grad_year: {value: "", allowValidation: false},
-        mailing_list: {value: true}, // mailing list is optional
-    });
-
-
     const [canMoveToNextStep, setCanMoveToNextStep] = useState(false);
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({length: 6}, (_, i) => currentYear - 1 + i);
-
-    const affiliations = useMemo(() => {
-        return [
-            {value: "", label: "Select..."},
-            {value: "barnard", label: "Barnard"},
-            {value: "cc", label: "divumbia divlege"},
-            {value: "seas", label: "SEAS"},
-            {value: "gs", label: "General Studies"},
-            {value: "graduate_student", label: "divumbia graduate school"}
-        ];
-    }, []);
-
-    const [errors, setErrors] = useState({});
-    const [firstName, setFirstName] = useState("");
-
-    const validateInput = useCallback((fieldName, value) => {
-        switch (fieldName) {
-            case "first_name":
-            case "last_name":
-                return value.length === 0 ? "This field is required" : "";
-            case "affiliation":
-                return (affiliations.some(affiliation => affiliation.value === value) && value.length !== 0) ? "" : "Please select an affiliation.";
-            case "grad_year":
-                return years.includes(Number(value)) ? "" : "Invalid graduation year.";
-            case "uni":
-                return (value.length !== 0) ? "" : "This field is required";
-            case "dj_name":
-                return value.length === 0 ? "You need to pick a DJ name." : "";
-            default:
-                return "";
-        }
-    }, [affiliations, years]);
+    const [formData, setFormData] = useState([{
+        first_name: "",
+        last_name: "",
+        uni: "",
+        grad_year: "",
+        affiliation: "",
+    }, {dj_name: ""}]);
 
 
-    const formDataIsValid = useCallback((currentFormData, step) => {
-        const newErrors = {};
-        const stepFields = [["first_name", "last_name", "uni", "affiliation", "grad_year"], ["dj_name"]];
-        Object.entries(currentFormData).forEach(([field, attributes]) => {
-            if (!stepFields[step].includes(field)) return;
-            const error = validateInput(
-                field,
-                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
-            );
-            if (error) newErrors[field] = error;
-        });
-        return Object.keys(newErrors).length === 0
-    }, [validateInput]);
-
-    const handleInputChange = (e) => {
-        const {name, value, type, checked} = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]:
-                {
-                    value: type === "checkbox" ? checked : value,
-                    allowValidation: true
-                }
-        }));
-    };
-
-
-    useEffect(() => {
-        const newErrors = {};
-        Object.entries(formData).forEach(([field, attributes]) => {
-            if (attributes.allowValidation) {
-                const error = validateInput(field, typeof attributes.value === "string" ? attributes.value.trim() : attributes.value);
-                if (error) newErrors[field] = error;
-            }
-        });
-
-        if (JSON.stringify(newErrors) !== JSON.stringify(errors)) {
-            setErrors(newErrors);
-        }
-
-        const canMove = formDataIsValid(formData, currentStep);
-        if (canMove !== canMoveToNextStep) {
-            setCanMoveToNextStep(canMove);
-        }
-    }, [formData, currentStep, formDataIsValid, validateInput, errors, canMoveToNextStep]);
-
-
-    const next = () => {
-        setFormData((prevData) =>
-            Object.fromEntries(
-                Object.entries(prevData).map(([key, value]) => [
-                    key,
-                    typeof value === "string" ? value.trim() : value,
-                ]),
-            ),
-        );
-        setFirstName(formData.first_name.value);
-        setCurrentStep((step) => step + 1);
-        setCanMoveToNextStep(formDataIsValid(formData, currentStep));
-    };
-
-    const prev = () => {
-        setCanMoveToNextStep(formDataIsValid(formData, currentStep - 1));
-        setCurrentStep((step) => step - 1);
-
-    };
-
-    const submitForm = async () => {
-        const newErrors = {};
-        const dataToSend = {}
-        Object.entries(formData).forEach(([field, attributes]) => {
-            const error = validateInput(
-                field,
-                typeof attributes.value === "string" ? attributes.value.trim() : attributes.value,
-            );
-
-            if (error) newErrors[field] = error;
-            dataToSend[field] = attributes.value;
-        });
-
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
-
-
-        fetch("http://localhost:8000/user/me", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token
-            },
-            body: JSON.stringify(dataToSend),
-        }).then((response) => response.json()).then((data) => {
-            console.log("got response",
-                data)
+    const validationSchemas = [
+        Yup.object().shape({
+            first_name: Yup.string()
+                .trim()
+                .required("This field is required"),
+            last_name: Yup.string()
+                .trim()
+                .required("This field is required"),
+            uni: Yup.string()
+                .trim()
+                .matches(/^[a-zA-Z]+\d+$/, "Hmm... this doesn't look like a UNI")
+                .required("This field is required"),
+            grad_year: Yup.number()
+                .oneOf(years, "Invalid grad year.")
+                .required("This field is required"),
+            affiliation: Yup.string()
+                .oneOf("barnard cc seas gs graduate_school".split(" "))
+                .required("Please select an affiliation."),
+        }),
+        Yup.object().shape({
+            dj_name: Yup.string()
+                .trim()
+                .lowercase()
+                .notOneOf(["WBAR E-board", "e-board", "WBAR", "WBAR Eboard", "admin"], "Nice try! This name is forbidden.")
+                .required("You need to pick a DJ name."),
         })
+    ]
 
-        console.log("Subscribing to mailing list");
+
+    const stepForms = [
+        {
+            title: "confirm personal information",
+            form: <Formik initialValues={formData[0]} validationSchema={validationSchemas[0]} onSubmit={
+                (values) => {
+                    setFormData([values, formData[1]]);
+                    setCurrentStep(1);
+                }
+            }>
+                {({errors, touched}) => (
+                    <Form className={"text-black flex flex-col"}>
+                        <div className={'sm:flex sm:gap-6'}>
+                            <div className={'sm:w-2/5'}>
+                                <LabeledField label="First name" name="first_name" placeholder="First Name"
+                                              errors={errors}
+                                              touched={touched}/>
+                            </div>
+                            <div className={"sm:w-3/5"}>
+                                <LabeledField label="Last name" name="last_name" placeholder="Last Name" errors={errors}
+                                              touched={touched}/>
+                            </div>
+                        </div>
+                        <LabeledField label="Columbia UNI" name="uni" placeholder="UNI" errors={errors}
+                                      touched={touched}/>
+                        <div className={"flex gap-6"}>
+                            <LabeledField label="Graduation year" name="grad_year" type="select"
+                                          placeholder="Graduation year" errors={errors} touched={touched}>
+                                <option disabled value={""} defaultChecked>Select graduation year...</option>
+                                {years.map((year, i) => <option key={i} value={year}>{year}</option>)}
+                            </LabeledField>
+                            <LabeledField label="School" name="affiliation" type="select"
+                                          placeholder="Columbia University Affiliation" errors={errors}
+                                          touched={touched}>
+                                <option disabled value={""} defaultChecked>Select affiliation...</option>
+                                {affiliations.map((affiliation, i) => <option key={i}
+                                                                              value={affiliation.affiliation}>{affiliation.label}</option>)}
+                            </LabeledField>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        }
+    ]
+    const handleDeleteUser = async () => {
+        const deleteResponse = await doAuthenticatedAPIRequest("/user/me", "DELETE", token)
+        console.log(deleteResponse)
+
+        // signing out removes the token from local storage
+        signOut()
+        navigate('/account/register')
     }
 
-
-    const steps = [
-        {
-            title: "Confirm personal information",
-            content: (
-                <form className="text-white">
+    return <div
+        className={'container px-3 pt-nav mx-auto pb-16 flex flex-col justify-center items-center min-h-screen'}>
+        <div className={"max-w-screen-sm"}>
+            <div className={'mb-3 pb-2 border-b'}>
+                <h1 className={"text-2xl md:text-3xl font-black uppercase mb-2"}>{stepForms[currentStep].title}</h1>
+                <div className={'flex justify-between items-end text-sm'}>
                     <div>
-                        <div>
-                                <div className={'flex flex-col'}>
-                                <label htmlFor={'first_name'}>First Name</label>
-                                <input
-                                    className={"bg-gray-800 border rounded-lg"}
-                                    type="text"
-                                    name="first_name"
-                                    value={formData.first_name.value}
-                                    onChange={handleInputChange}
-                                />
-
-                            </div>
-                        </div>
-                        <div>
-                            <div controlId="formBasicLastName">
-                                <label htmlFor={'last_name'}>Last Name</label>
-                                <input
-                                    size="lg"
-                                    type="text"
-                                    name="last_name"
-                                    value={formData.last_name.value}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
+                        <div className={'text-gray-400'}>Signed in as <span>{sessionEmail}</span></div>
+                        <div className={'text-xs mt-1'}>Not you? <span
+                            className={'text-blue-500 hover:underline cursor-pointer'} onClick={handleDeleteUser}>Go back</span>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <div>
-                                <label htmlFor={'affiliation'} >
-                                   Columbia affiliation
-                                </label>
-                                <select
-                                    name="affiliation"
-                                    value={formData.affiliation.value}
-                                    onChange={handleInputChange}
-                                >
-                                    {affiliations.map((affiliation) => (
-                                        <option key={affiliation.value} value={affiliation.value}>
-                                            {affiliation.label}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        {formData.affiliation.value !== "" && (
-                            <>
-                                <div xs={6}>
-                                    <div>
-                                        <label divumn={"sm"}>UNI</label>
-                                        <input
-                                            size="lg"
-                                            type="text"
-                                            name="uni"
-                                            value={formData.uni.value}
-                                            onChange={handleInputChange}
-                                            isInvalid={!!errors.uni}
-                                        />
-                                    </div>
-                                </div>
-                                <div xs={6}>
-                                    <div>
-                                        <label divumn={"sm"}>Graduation Year</label>
-                                        <select
-                                            name="grad_year"
-                                            value={formData.grad_year.value}
-                                            onChange={handleInputChange}
-                                        >
-                                            <option value={""}>Select...</option>
-                                            {years.map((year) => (
-                                                <option key={year} value={year}>
-                                                    {year}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.grad_year}
-                                        </Form.Control.Feedback>
-                                    </div>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                    <div>
-                        <div className={'mt-4'}>
-                            <div >
-                                <Form.Check
-                                    type="checkbox"
-                                    name="mailing_list"
-                                    label="Sign me up for the WBAR mailing list"
-                                    checked={formData.mailing_list.value}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            ),
-        },
-        {
-            title: "Please choose a DJ name.",
-            content: (
-                <form className="text-white">
-                    <div>
-                        <div className="mb-3">
-                            <div id="warning-box" className="p-4 pb-2">
-                                <div>
-                                    <div className="h6 flex mx-auto gap-2 justify-items-start">
-                                        <ExclamationTriangle
-                                            className="bi bi-exclamation-triangle"></ExclamationTriangle>
-                                        <strong>Choose carefully!</strong>
-                                    </div>
-                                    <ul className="fs-6">
-                                        <li>
-                                            This is how you'll be known to listeners (
-                                            <span className="italics">your DJ name</span>).
-                                        </li>
-                                        <li>It can't be changed later.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div >
-                                <label >DJ name</label>
-                                <input
-                                    size="lg"
-                                    type="text"
-                                    name="dj_name"
-                                    value={formData.dj_name.value}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            ),
-        }
-    ];
-
-
-    return (
-        <div className="container flex flex-col justify-center h-screen mx-auto max-w-screen-sm mt-4 text-white">
-            <div className={"px-10"}>
-                <div>
-                    <div className={"flex justify-between items-end border-b"}>
-                        <h1>{firstName ? `Welcome, ${firstName}.` : "Hi there!"}</h1>
-                        <div>
-                            Step {currentStep + 1} of {steps.length}
-                        </div>
-                    </div>
-                    <hr/>
-                    <h5 className={"mt-4 font-extrabold uppercase text-3xl"}>{steps[currentStep].title}</h5>
-                    <div className="steps-content border-b">{steps[currentStep].content}</div>
-                    <div className="steps-action mt-4 flex justify-between">
-                        <button
-                            disabled={currentStep === 0}
-                            style={{margin: "0 8px"}}
-                            onClick={() => prev()}
-                        >
-                            Previous
-                        </button>
-
-                        <button
-                            onClick={currentStep < steps.length - 1 ? next : submitForm}
-                            disabled={!canMoveToNextStep}
-                        >
-                            {currentStep < steps.length - 1 ? "Next" : "Submit"}
-                        </button>
-                    </div>
+                    <div>Step {currentStep + 1} of {stepForms.length}</div>
                 </div>
             </div>
+            {stepForms[currentStep].form}
         </div>
-    );
+    </div>
+
 };
 
 export default CreateAccount;

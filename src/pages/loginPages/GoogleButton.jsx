@@ -9,7 +9,7 @@ export default function GoogleButton() {
         event.preventDefault();
         const {user, error} = await supabase.auth.signInWithOAuth({
             provider: "google", options: {
-                redirectTo: window.location.origin + "/dashboard"
+                redirectTo: window.location.origin + "/account/new"
             }
         });
 

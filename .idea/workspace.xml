@@ -5,27 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="can post new users from localhost">
-      <change afterPath="$PROJECT_DIR$/src/Auth.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/loginPages/RegisterConfirm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/loginPages/ErrorFeedback.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Protected.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protected.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ScheduleManager.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ScheduleManager.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/supabase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/supabase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/NowPlaying.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NowPlaying.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/GoogleButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +81,7 @@
       <recent name="$PROJECT_DIR$/client" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/pages/loginPages/ErrorFeedback.jsx" />
       <recent name="$PROJECT_DIR$/src/helpers/authenticated.js" />
     </key>
   </component>
@@ -132,7 +120,7 @@
       <workItem from="1730657657214" duration="773000" />
       <workItem from="1730943154914" duration="5925000" />
       <workItem from="1731001012300" duration="2518000" />
-      <workItem from="1737407451021" duration="8318000" />
+      <workItem from="1737407451021" duration="19005000" />
     </task>
     <task id="LOCAL-00001" summary="fetch schedule from server.js">
       <option name="closed" value="true" />

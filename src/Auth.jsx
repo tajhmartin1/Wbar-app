@@ -1,25 +1,43 @@
-import {supabase} from "./helpers/supabase.js";
+import {supabase, doAuthenticatedAPIRequest} from "./helpers/supabase.js";
 import {createContext, useContext, useEffect, useState} from "react";
 // create a context for authentication
-const AuthContext = createContext({ session: null, user: null, signOut: () => {} });
+const AuthContext = createContext({
+    session: null, user: null, signOut: () => {
+    }
+});
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [session, setSession] = useState(null);
+    const [sessionEmail, setSessionEmail] = useState(null);
+
     const [loading, setLoading] = useState(true);
+    async function getUserFromSession(session) {
+        const token = session?.access_token
+        if (token) {
+            const {data: {user}, error} = await doAuthenticatedAPIRequest("/user/me", "GET", token)
+            if (error) throw error;
+            return user
+        }
+        return null;
+    }
 
     useEffect(() => {
         const setData = async () => {
-            const { data: { session }, error } = await supabase.auth.getSession();
+            const {data: {session}, error} = await supabase.auth.getSession();
             if (error) throw error;
             setSession(session)
-            setUser(session?.user)
+            setSessionEmail(session?.user?.email)
+            const user = await getUserFromSession(session)
+            setUser(user)
             setLoading(false);
         };
 
-        const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+        const {data: listener} = supabase.auth.onAuthStateChange(async (_event, session) => {
             setSession(session);
-            setUser(session?.user)
+            setSessionEmail(session?.user?.email);
+            const user = await getUserFromSession(session)
+            setUser(user);
             setLoading(false)
         });
 
@@ -33,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     const value = {
         session,
         user,
+        sessionEmail,
         signOut: () => supabase.auth.signOut(),
     };
 

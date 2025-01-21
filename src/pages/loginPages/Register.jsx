@@ -2,26 +2,20 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import GoogleButton from "./GoogleButton";
 import {supabase} from "../../helpers/supabase.js";
-import {Formik, Form, Field} from "formik";
+import {useAuth} from "../../Auth.jsx";
+import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-
-function ErrorFeedback({message}) {
-    return (
-        <div className={'flex items-center gap-1 text-red-600 motion-preset-slide-down'}>
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>{message}</div>
-        </div>)
-}
+import {ErrorFeedback} from "./ErrorFeedback.jsx";
 
 function Register() {
     const navigate = useNavigate();
-
+    const {session, user, signOut} = useAuth();
     // message returned from supabase
     const [message, setMessage] = useState("");
 
+    if (session) {
+        navigate("/dashboard");
+    }
     const SignupSchema = Yup.object().shape({
         email: Yup.string().trim()
             .email('Invalid email')
