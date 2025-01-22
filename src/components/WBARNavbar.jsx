@@ -1,6 +1,6 @@
 import React from 'react';
 import Stream from './Stream';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useRef} from "react";
 import {useAuth} from "../Auth.jsx";
 
@@ -9,7 +9,12 @@ const WBARNavbar = () => {
     const toggleNavExpansion = () => {
         navRef.current.classList.toggle('hidden');
     }
+    const navigate = useNavigate()
     const {session, user, signOut} = useAuth();
+    async function handleSignOut() {
+        await signOut();
+        navigate("/login", {state: {initialMessage: "You have been logged out."}});
+    }
 
     return (
         <nav
@@ -22,8 +27,8 @@ const WBARNavbar = () => {
                 <Stream/>
                 <div className={"flex gap-6"}>
                     {session &&
-                        <button onClick={signOut}
-                            className={"hover:bg-purple-100 bg-opacity-15 hover:text-purple-500 border rounded-xl text-sm px-2 font-black uppercase"}>
+                        <button onClick={handleSignOut}
+                                className={"hover:bg-purple-100 bg-opacity-15 hover:text-purple-500 border rounded-xl text-sm px-2 font-black uppercase"}>
                             Log out
                         </button>
                     }

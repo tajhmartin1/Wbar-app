@@ -177,9 +177,8 @@ const CreateAccount = () => {
             const deleteResponse = await doAuthenticatedAPIRequest("/user/me", "DELETE", token)
             console.log(deleteResponse)
 
-            // signing out removes the token from local storage
+            // signing out removes the token from local storage and sends the user back to login
             signOut()
-            navigate('/account/register')
         }
 
         return <div

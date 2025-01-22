@@ -7,12 +7,10 @@ import {useAuth} from "../Auth.jsx";
 
 import "./Dashboard.css"
 import User from "../components/User.jsx";
-import {useNavigate} from "react-router-dom";
 
 export default function Dashboard() {
     const {session, user, signOut} = useAuth()
 
-    const navigate = useNavigate()
     const token = session?.access_token;
 
     async function copyToken() {
@@ -32,26 +30,23 @@ export default function Dashboard() {
                 setRoles(response.map((role) => role.role))
                 setLoading(false)
             })
+                .catch((error) => {
+                    console.error(error)
+                    setLoading(false)
+                })
         }
     }, [])
 
-    return token && (<Container>
-            <Row>
-                <h1>Dashboard</h1>
-                <Button onClick={copyToken}>DEBUG: Copy Token</Button>
-                <div className={"flex gap-1"}>
-                    <span>Your authorization level:</span>
-                    {loading && <span>Loading roles...</span>}
-                    <span className="d-flex gap-1">
-                    {roles.map((role, i) => (<span key={i}>{role}</span>))}
-                </span>
-                </div>
-            </Row>
-            <Row>
-                <Col sm={4}>
-                    <User roles={roles}/>
-                </Col>
-            </Row>
-            {roles.includes("executive_board") && <ScheduleManager/>}
-        </Container>);
+    return token && (<div className={'container w-full pt-nav bg-black mx-auto min-h-screen'}>
+        <div>
+            <h1 className={"text-5xl font-black uppercase mt-4"}>Dashboard</h1>
+            <button className={'bg-purple-600 py-1 px-2 rounded'} onClick={copyToken}>DEBUG: Copy Token</button>
+        </div>
+        <div>
+            <div>
+                <User roles={roles}/>
+            </div>
+        </div>
+        {roles.includes("executive_board") && <ScheduleManager/>}
+    </div>);
 }
