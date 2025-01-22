@@ -51,6 +51,7 @@ export const AuthProvider = ({children}) => {
     const value = {
         session,
         user,
+        setUser,
         sessionEmail,
         signOut: () => supabase.auth.signOut(),
     };

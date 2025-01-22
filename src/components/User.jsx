@@ -11,12 +11,6 @@ export default function User({roles}) {
     const {session, user, signOut} = useAuth();
     const token = session?.access_token;
     const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        doAuthenticatedAPIRequest("/user/me", "GET", token).then((response) => {
-            setUser(response.data[0])
-            setLoading(false)
-        })
-    }, []);
     return (
         <div id="user-box">
             <div className={"d-flex justify-content-start align-items-center gap-3"}>
