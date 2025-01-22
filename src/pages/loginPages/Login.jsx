@@ -9,12 +9,12 @@ function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState(!initialMessage && "");
+    const [message, setMessage] = useState(initialMessage);
     const {session, user, signOut} = useAuth();
 
     useEffect(() => {
-        console.log(session)
         if (session) {
+            console.log(session)
             navigate("/dashboard");
         }
     }, []);

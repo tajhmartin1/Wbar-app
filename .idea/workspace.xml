@@ -7,9 +7,11 @@
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="can post new users from localhost">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Auth.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Protected.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Protected.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/supabase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/supabase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/CreateAccount.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/loginPages/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +120,7 @@
       <workItem from="1730943154914" duration="5925000" />
       <workItem from="1731001012300" duration="2518000" />
       <workItem from="1737407451021" duration="19379000" />
-      <workItem from="1737499842745" duration="9388000" />
+      <workItem from="1737499842745" duration="17156000" />
     </task>
     <task id="LOCAL-00001" summary="fetch schedule from server.js">
       <option name="closed" value="true" />
@@ -191,5 +193,17 @@
     <MESSAGE value="Create account workflow clientside" />
     <MESSAGE value="show errors only if field has been modified" />
     <option name="LAST_COMMIT_MESSAGE" value="show errors only if field has been modified" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/helpers/supabase.js</url>
+          <line>7</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

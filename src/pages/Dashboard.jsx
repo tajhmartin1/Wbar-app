@@ -7,9 +7,12 @@ import {useAuth} from "../Auth.jsx";
 
 import "./Dashboard.css"
 import User from "../components/User.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function Dashboard() {
     const {session, user, signOut} = useAuth()
+
+    const navigate = useNavigate()
     const token = session?.access_token;
 
     async function copyToken() {
@@ -21,7 +24,6 @@ export default function Dashboard() {
 
 
     useEffect(() => {
-        console.log("session:", session)
         console.log("token:", token)
 
         if (token) {

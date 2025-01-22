@@ -31,10 +31,15 @@ const CreateAccount = () => {
                 label: "General Studies"
             }, {affiliation: "graduate_school", label: "Other Columbia school"}];
 
-        const {sessionEmail, session, signOut} = useAuth();
+        const {sessionEmail, session, user, updateUser, signOut} = useAuth();
         const token = session?.access_token;
 
         const navigate = useNavigate()
+
+        if (user) {
+            navigate("/dashboard")
+            return null
+        }
 
         const [currentStep, setCurrentStep] = useState(0);
         const [formData, setFormData] = useState([{
@@ -52,23 +57,25 @@ const CreateAccount = () => {
                 function checkNoErrors(formikErrors) {
                     return fields.every((field) => formikErrors[field] === undefined);
                 }
+
                 function checkAllTouched(formikTouched) {
                     return fields.every((field) => formikTouched[field] !== undefined);
                 }
+
                 setDisableNextStep(!checkNoErrors(errors) || !checkAllTouched(touched))
             }, [errors, touched]);
 
             return <div className={'flex justify-between mt-4'}>
                 <button onClick={() => currentStep !== 0 && setCurrentStep((prevStep) => prevStep - 1)}
                         disabled={currentStep === 0}
+                        type={"submit"}
                         className={'bg-purple-900 text-white py-2 px-4 rounded-lg'}>Back
                 </button>
-                <button onClick={currentStep === stepForms.length - 1 ?
-                    () => console.log(formData) :
-                    () => setCurrentStep((prevStep) => prevStep + 1)
-                }
+                <button onClick={() => currentStep !== stepForms.length - 1 && setCurrentStep((prevStep) => prevStep + 1)}
+                        type={"submit"}
                         disabled={disableNextStep}
-                        className={'bg-purple-900 text-white py-2 px-4 rounded-lg'}>Next
+                        className={'bg-purple-900 text-white py-2 px-4 rounded-lg'}>
+                    {currentStep !== stepForms.length - 1 ? "Next" : "Submit"}
                 </button>
             </div>
         }
@@ -102,13 +109,11 @@ const CreateAccount = () => {
         ]
 
 
-
         const stepForms = [
             {
                 title: "confirm personal information",
                 form: <Formik initialValues={formData[0]} validationSchema={validationSchemas[0]} onSubmit={
-                    (values) => {
-                        setFormData([values, formData[1]]);
+                    () => {
                         setCurrentStep(1);
                     }
                 }>
@@ -141,7 +146,8 @@ const CreateAccount = () => {
                                                                                   value={affiliation.affiliation}>{affiliation.label}</option>)}
                                 </LabeledField>
                             </div>
-                            <StepButtons errors={errors} touched={touched} fields={["first_name", "last_name", "uni", "grad_year", "affiliation"]}/>
+                            <StepButtons errors={errors} touched={touched}
+                                         fields={["first_name", "last_name", "uni", "grad_year", "affiliation"]}/>
                         </Form>
                     )}
                 </Formik>
@@ -149,7 +155,12 @@ const CreateAccount = () => {
             {
                 title: "Please choose a DJ name.",
                 form: <Formik initialValues={formData[1]} validationSchema={validationSchemas[1]} onSubmit={
-                    () => console.log(formData)
+                    (values) => {
+                        console.log("submitting form data")
+                        doAuthenticatedAPIRequest("/user/me", "POST", token, {body: JSON.stringify(values)}).then((response) => {
+                            updateUser().then(() => navigate("/dashboard"))
+                        })
+                    }
                 }
                 >
                     {({errors, touched}) => (

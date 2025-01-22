@@ -2,7 +2,8 @@ import {supabase, doAuthenticatedAPIRequest} from "./helpers/supabase.js";
 import {createContext, useContext, useEffect, useState} from "react";
 // create a context for authentication
 const AuthContext = createContext({
-    session: null, user: null, signOut: () => {
+    session: null, sessionEmail: null, user: null, updateUser: () => {
+    }, signOut: () => {
     }
 });
 
@@ -12,14 +13,21 @@ export const AuthProvider = ({children}) => {
     const [sessionEmail, setSessionEmail] = useState(null);
 
     const [loading, setLoading] = useState(true);
+
     async function getUserFromSession(session) {
         const token = session?.access_token
         if (token) {
-            const {data: {user}, error} = await doAuthenticatedAPIRequest("/user/me", "GET", token)
-            if (error) throw error;
-            return user
+            const response = await doAuthenticatedAPIRequest("/user/me", "GET", token)
+            return response.data[0]
         }
         return null;
+    }
+
+    async function updateUser() {
+        console.log("updating user in context")
+        const newUser = await getUserFromSession(session)
+        console.log("got user:", newUser)
+        setUser(newUser)
     }
 
     useEffect(() => {
@@ -50,9 +58,9 @@ export const AuthProvider = ({children}) => {
 
     const value = {
         session,
-        user,
-        setUser,
-        sessionEmail,
+        user,           // reflects the user in the public.user (null before CreateAccount submit)
+        sessionEmail,   // reflects the user in auth.users
+        updateUser,     // CreateAccount uses this to update the user after the form is submitted
         signOut: () => supabase.auth.signOut(),
     };
 
@@ -64,7 +72,7 @@ export const AuthProvider = ({children}) => {
     );
 };
 
-// export the useAuth hook
+
 export const useAuth = () => {
     return useContext(AuthContext);
 };

@@ -10,11 +10,15 @@ export async function doAuthenticatedAPIRequest(path, method, token, options) {
         throw new Error("No token available");
     }
     const headers = {
-        Authorization: `Bearer ${token}`, "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        ...(method === "POST" && {"Accept": "application/json"})
     };
     const methodOption = {method: method}
     const allOptions = {
-        ...methodOption, ...options,
+        ...methodOption,
+        ...options,
+        ...( method === "POST" && {body: options?.body || {}})
     }
     // TODO: change for production
     return fetch(`http://localhost:8000${path}`, {
