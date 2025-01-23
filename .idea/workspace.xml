@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29138861-71ec-484c-b44b-c80c5ddaafa1" name="Changes" comment="can post new users from localhost">
+      <change afterPath="$PROJECT_DIR$/src/components/Avatar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/User.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WBARNavbar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="JSX File" />
         <option value="CSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -115,7 +116,7 @@
       <workItem from="1730943154914" duration="5925000" />
       <workItem from="1731001012300" duration="2518000" />
       <workItem from="1737407451021" duration="19379000" />
-      <workItem from="1737499842745" duration="25983000" />
+      <workItem from="1737499842745" duration="30856000" />
     </task>
     <task id="LOCAL-00001" summary="fetch schedule from server.js">
       <option name="closed" value="true" />
